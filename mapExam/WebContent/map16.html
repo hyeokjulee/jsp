@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>16 geolocation으로 마커 표시하기 (크롬에서만 사용 가능)</title>
+	</head>
+	<body>
+		<div id="map" style="width:700px;height:700px;">
+		</div>
+		
+		<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9be778870feb90201270c5f6faab06c8">
+		</script>
+		
+		<script>
+			var container = document.getElementById('map');
+			
+			var options = {
+					center : new kakao.maps.LatLng(37.560203, 126.921449),
+					level : 3
+			};
+			
+			var map = new kakao.maps.Map(container, options);
+			
+			if(navigator.geolocation){
+				navigator.geolocation.getCurrentPosition(function(position) {
+					var lat = position.coords.latitude; //위도
+					var lon = position.coords.longitude; //경도
+					
+					var locPosition = new kakao.maps.LatLng(lat, lon);
+					var message = '<h6>Here???</h6>';
+					
+					displayMarker(locPosition, message);
+				});
+			} else {
+				var locPosition = new kakao.maps.LatLng(37.560203, 126.921449);
+				var message = 'geolocation을 사용할 수 없습니다. 크롬 브라우저를 이용하세요.';
+				
+				displayMarker(locPosition, message);
+			}
+			
+			function displayMarker(locPosition, message) {
+				var marker = new kakao.maps.Marker({
+					map: map,
+				  	position: locPosition
+				});
+				
+				var infowindow = new kakao.maps.InfoWindow({
+				    content : message,
+				    removable : true
+				});
+				
+				infowindow.open(map, marker);
+				
+				map.setCenter(locPosition);
+			};
+		</script>
+	</body>
+</html>

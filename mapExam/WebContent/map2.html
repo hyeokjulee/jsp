@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>지도 레벨</title>
+	</head>
+	<body>
+		<div id="map" style="width:700px;height:700px;">
+		</div>
+		
+		<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9be778870feb90201270c5f6faab06c8">
+		</script>
+		
+		<script>
+			var container = document.getElementById('map');
+			
+			var options = {
+					center : new kakao.maps.LatLng(33.450701, 126.570667),
+					level : 10 // 지도의 크기를 설정 예) 10이 서울 전체, 제주 전체
+			};
+			
+			var map = new kakao.maps.Map(container, options);
+			
+			
+		</script>
+	</body>
+</html>

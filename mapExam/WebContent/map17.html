@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>17 마커 여러개 표시</title>
+	</head>
+	<body>
+		<div id="map" style="width:700px;height:700px;">
+		</div>
+		
+		<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9be778870feb90201270c5f6faab06c8">
+		</script>
+		
+		<script>
+			var container = document.getElementById('map');
+			
+			var options = {
+					center : new kakao.maps.LatLng(37.560203, 126.921449),
+					level : 3
+			};
+			
+			var map = new kakao.maps.Map(container, options);
+			
+			var positions = [
+				{
+					title : '카카오',
+					latlng : new kakao.maps.LatLng(37.560203, 126.921449)
+				},
+				{
+					title : '우리집',
+					latlng : new kakao.maps.LatLng(37.460203, 126.581449)
+				}
+			];
+			
+			for (var i = 0; i < positions.length; i++) {
+				var marker = new kakao.maps.Marker({
+					map : map,
+					position : positions[i].latlng,
+					title : positions[i].title
+				});
+			}
+			
+			
+		</script>
+	</body>
+</html>

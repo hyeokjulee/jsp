@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>12 다른 이미지로 마커 생성하기</title>
+	</head>
+	<body>
+		<div id="map" style="width:700px;height:700px;">
+		</div>
+		
+		<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9be778870feb90201270c5f6faab06c8">
+		</script>
+		
+		<script>
+			var container = document.getElementById('map');
+			
+			var options = {
+					center : new kakao.maps.LatLng(37.560203, 126.921449),
+					level : 3
+			};
+			
+			var map = new kakao.maps.Map(container, options);
+			
+			// 마커로 사용할 사진 설정
+			var imageSrc = 'data:image/png;base64,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';
+			var imageSize = new kakao.maps.Size(64,69);
+			var imageOption = {offset : new kakao.maps.Point(27,69)};
+			
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+			var markerPosition = new kakao.maps.LatLng(37.560203, 126.921449);
+			
+			// 마커 생성
+			var marker = new kakao.maps.Marker({
+				position : markerPosition,
+				image : markerImage
+			});
+			
+			// 마커 지도에 올리기
+			marker.setMap(map);
+			
+			// 마커를 움직일 수 있도록 설정
+			marker.setDraggable(true);
+		</script>
+	</body>
+</html>

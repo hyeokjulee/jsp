@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>20 로드뷰</title>
+	</head>
+	<body>
+		<div id="map" style="width:700px;height:500px;">
+		</div>
+		<div id="road" style="width:700px;height:500px;">
+		</div>
+		
+		<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9be778870feb90201270c5f6faab06c8">
+		</script>
+		
+		<script>
+			var position = new kakao.maps.LatLng(37.560203, 126.921449);
+		
+			var container = document.getElementById('map');
+			
+			var options = {
+					center : position,
+					level : 3
+			};
+			
+			var map = new kakao.maps.Map(container, options);
+			
+			// 로드 뷰는 지도와는 별도로 그릴 수 있다. 지도 없이 로드뷰만 생성도 가능하다.
+			
+			// 로드뷰 표시 위치
+			var roadviewContainer = document.getElementById('road');
+			
+			// 로드뷰 객체 생성
+			var roadview = new kakao.maps.Roadview(roadviewContainer);
+			
+			// 해당 좌표로부터 로드 뷰 파노라마 ID를 가져올 로드 뷰 helper 객체
+			var roadviewClient = new kakao.maps.RoadviewClient();
+			
+			//특정 위치의 좌표와 가까운 로드 뷰를 추출하여 로드 뷰를 띄운다.
+			roadviewClient.getNearestPanoId(position, 50, function(panoId) {
+				roadview.setPanoId(panoId, position);
+			});
+		</script>
+	</body>
+</html>

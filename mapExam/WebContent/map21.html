@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>21 키워드로 장소 검색하기</title>
+	</head>
+	<body>
+		<div id="map" style="width:700px;height:500px;">
+		</div>
+		<div id="road" style="width:700px;height:500px;">
+		</div>
+		
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9be778870feb90201270c5f6faab06c8&libraries=services">
+		</script>
+		
+		<script>
+			var container = document.getElementById('map');
+			
+			var options = {
+					center : new kakao.maps.LatLng(0, 0),
+					level : 3
+			};
+			
+			var map = new kakao.maps.Map(container, options);
+			
+			//마커를 클릭하면 그 장소에 대한 정보를 보여주는 인포 윈도우
+			var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+			
+			//장소 검색 객체 생성
+			var ps = new kakao.maps.services.Places();
+			
+			//검색할 장소
+			ps.keywordSearch('홍대 맛집', placesSearchCB);
+			
+			function placesSearchCB(data, status, pagination) {
+				if(status === kakao.maps.services.Status.OK){
+					var bounds = new kakao.maps.LatLngBounds();
+					
+					for (var i = 0; i < data.length; i++) {
+						displayMarker(data[i]);
+						bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+					}
+					
+					//검색된 장소들의 위치를 기준으로 지도 범위 재설정 (크기가 확대/축소 될 수 있다.)
+					map.setBounds(bounds);
+				}
+			}
+			
+			//지도에 마커 표시 함수
+			function displayMarker(place){
+				var marker = new kakao.maps.Marker({
+					map : map,
+					position : new kakao.maps.LatLng(place.y, place.x)
+				});
+				
+				kakao.maps.event.addListener(marker, 'click', function() {
+					infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+					infowindow.open(map, marker);
+				});
+			}
+		</script>
+	</body>
+</html>

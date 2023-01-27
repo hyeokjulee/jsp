@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>22 주소로 장소 검색하기</title>
+	</head>
+	<body>
+		<div id="map" style="width:700px;height:500px;">
+		</div>
+		<div id="road" style="width:700px;height:500px;">
+		</div>
+		
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9be778870feb90201270c5f6faab06c8&libraries=services">
+		</script>
+		
+		<script>
+			var container = document.getElementById('map');
+			
+			var options = {
+					center : new kakao.maps.LatLng(0, 0),
+					level : 3
+			};
+			
+			var map = new kakao.maps.Map(container, options);
+			
+			// 주소를 좌표로 변환 객체 생성
+			var geocoder = new kakao.maps.services.Geocoder();
+			
+			geocoder.addressSearch('서울특별시 마포구 월드컵북로 21', function(result, status) {
+				//정상적으로 해당 주소를 검색 완료 됐다면
+				if(status === kakao.maps.services.Status.OK) {
+					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+					
+					var marker = new kakao.maps.Marker({
+						map : map,
+						position : coords
+					});
+					
+					var infowindow = new kakao.maps.InfoWindow({
+						content : '검색 지점'
+					});
+					
+					infowindow.open(map, marker);
+					
+					//해당 주소로 지도 화면 중심 이동
+					map.setCenter(coords);
+				}
+			});
+		</script>
+	</body>
+</html>

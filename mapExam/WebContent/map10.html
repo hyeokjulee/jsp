@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>10. 마커 생성하기</title>
+	</head>
+	<body>
+		<div id="map" style="width:700px;height:700px;">
+		</div>
+		
+		<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9be778870feb90201270c5f6faab06c8">
+		</script>
+		
+		<script>
+			var container = document.getElementById('map');
+			
+			var options = {
+					center : new kakao.maps.LatLng(37.560203, 126.921449),
+					level : 3
+			};
+			
+			var map = new kakao.maps.Map(container, options);
+			
+			// 마커를 표시할 위치
+			var markerPosition = new kakao.maps.LatLng(37.560203, 126.921449);
+			
+			// 마커 생성
+			var marker = new kakao.maps.Marker({
+				position : markerPosition
+			});
+
+			//마커 지도에 올리기
+			marker.setMap(map);
+		</script>
+	</body>
+</html>
