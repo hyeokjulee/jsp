@@ -4,25 +4,28 @@ import java.util.*;
 
 public class ex1181 {
 	public static void main(String[] args) {
-		
 		Scanner sc = new Scanner(System.in);
-		
+
 		int n = sc.nextInt();
-		String[] arr = new String[n];
-		
-		for (int i = 0; i < n; i++) {
-			arr[i] = sc.nextLine();
-		}
-		
-		Arrays.sort(arr, (s1, s2) -> s1.length() - s2.length());
-		Arrays.sort(arr, Comparator.comparing(String::length));
-		
-		Arrays.sort(arr);
+
+		sc.nextLine();
+
+		String[] strArr = new String[n];
 
 		for (int i = 0; i < n; i++) {
-			System.out.println(arr[i]);
+			strArr[i] = sc.nextLine();
 		}
-		
+
 		sc.close();
+
+		Arrays.sort(strArr);
+
+		for (int j = 1; j <= 50; j++) {
+			for (int i = 0; i < n; i++) {
+				if ((i == n - 1 || !strArr[i].equals(strArr[i + 1])) && (strArr[i].length() == j)) {
+					System.out.println(strArr[i]);
+				}
+			}
+		}
 	}
 }
