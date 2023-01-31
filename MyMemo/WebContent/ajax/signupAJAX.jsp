@@ -7,7 +7,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -66,28 +66,52 @@
 </head>
 
 <body class="text-center">
+
 <%@ include file="/header.jsp"%>
+
+<script type="text/javascript">
+	function signupFunction() {
+		$.ajax({
+			type : "post",
+			url : "signupCheckAJAX.jsp",
+			data : {id : encodeURIComponent(document.getElementById('id').value),
+					password : encodeURIComponent(document.getElementById('password').value),
+					name : encodeURIComponent(document.getElementById('name').value)
+					},
+			dataType : "text",
+			success : function(data) {
+				var id = document.getElementById('id');
+				var password = document.getElementById('password');
+				var name = document.getElementById('name');
+				id.value = "";
+				password.value = "";
+				name.value = "";
+			}
+		});
+	}
+</script>
+
 	<main class="form-signin w-100 m-auto">
-	  <form action="signupCheck.jsp" method="post">
+	  <form>
 	    <img class="mb-4" src="http://austiny.snu.ac.kr/image/mine.jpg" alt="" width="72" height="57">
 	    <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
 	
 		<div class="form-floating">
-	      <input type="text" name="name" class="form-control" id="floatingName" placeholder="이름을 입력하세요.">
-	      <label for="floatingName">Name</label>
+	      <input type="text" name="name" class="form-control" id="name" placeholder="이름을 입력하세요.">
+	      <label for="name">Name</label>
 	    </div>
 	
 	    <div class="form-floating">
-	      <input type="text" name="id" class="form-control" id="floatingId" placeholder="아이디를 입력하세요.">
-	      <label for="floatingId">ID</label>
+	      <input type="text" name="id" class="form-control" id="id" placeholder="아이디를 입력하세요.">
+	      <label for="id">ID</label>
 	    </div>
 	    
 	    <div class="form-floating">
-	      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="암호를 입력하세요.">
-	      <label for="floatingPassword">Password</label>
+	      <input type="password" name="password" class="form-control" id="password" placeholder="암호를 입력하세요.">
+	      <label for="password">Password</label>
 	    </div>
 	    
-	    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+	    <button class="w-100 btn btn-lg btn-primary" type="submit" id="signup" onclick="signupFunction()">Sign up</button>
 	    <p class="mt-5 mb-3 text-muted">&copy; 2017–2023</p>
 	  </form>
 	</main>

@@ -63,11 +63,11 @@
     </style>
     
     <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
+    <link href="/signin.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
-<%@ include file="header.jsp"%>
+<%@ include file="/header.jsp"%>
 	<main class="form-signin w-100 m-auto">
 	  <form action="loginCheck.jsp" method="post">
 	    <img class="mb-4" src="http://austiny.snu.ac.kr/image/mine.jpg" alt="" width="72" height="57">
@@ -87,6 +87,6 @@
 	    <p class="mt-5 mb-3 text-muted">&copy; 2017–2023</p>
 	  </form>
 	</main>
-<%@ include file="footer.jsp"%>
+<%@ include file="/footer.jsp"%>
 </body>
 </html>

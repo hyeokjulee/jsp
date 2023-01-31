@@ -1,9 +1,12 @@
-package jdbc;
+									package jdbc;
 
 import java.sql.*;
 import java.util.ArrayList;
-
 import javax.naming.NamingException;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import util.ConnectionPool;
 
 public class UserDAO {
@@ -105,6 +108,37 @@ public class UserDAO {
 			conn.close();
 			
 			return users;
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static String listAJAX() { //AJAX로 모든 리스트 출력 메서드
+		try {
+			String sql = "SELECT * FROM user ORDER BY ts DESC";
+			
+			Connection conn = ConnectionPool.get();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			
+			JSONArray users = new JSONArray();
+			
+			while (rs.next()) {
+				JSONObject obj = new JSONObject();
+				obj.put("id", rs.getString(1));
+				obj.put("password", rs.getString(2));
+				obj.put("name", rs.getString(3));
+				obj.put("ts", rs.getString(4));
+				
+				users.add(obj);
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+			return users.toJSONString();
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();
 		}
