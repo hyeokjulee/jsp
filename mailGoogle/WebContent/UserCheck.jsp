@@ -1,5 +1,5 @@
-<%@page import="smtp.GoogleSMTP, java.io.*, java.util.*, jdbc.UserDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="smtp.GoogleSMTP, java.io.*, java.util.*, jdbc.UserDAO" 
+language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8"); //한글 처리
 
@@ -13,7 +13,7 @@
 	if (result == 1) { //회원 가입 성공시 모달 창으로 "회원 가입 완료", "축하합니다."
 		Map<String, String> emailInfo = new HashMap<String, String>();
 		
-		emailInfo.put("from", "dlhjwwe@gmail.com"); //보내는 사람, 변동 불가, 반드시 본인의 네이버 메일주소
+		emailInfo.put("from", "이메일"); //보내는 사람, 변동 불가, 반드시 본인의 네이버 메일주소
 		emailInfo.put("to", request.getParameter("to")); //받는 사람
 		emailInfo.put("subject", "[구글] 회원 가입을 환영합니다."); //메일 제목
 		
