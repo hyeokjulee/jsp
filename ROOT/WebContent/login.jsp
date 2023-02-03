@@ -69,7 +69,7 @@
 <body class="text-center">
 <%@ include file="/header.jsp"%>
 	<main class="form-signin w-100 m-auto">
-	  <form action="loginCheck.jsp" method="post">
+	  <form action="/loginCheck.jsp" method="post">
 	    <img class="mb-4" src="http://austiny.snu.ac.kr/image/mine.jpg" alt="" width="72" height="57">
 	    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 	

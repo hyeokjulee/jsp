@@ -1,12 +1,9 @@
-									package jdbc;
+package jdbc;
 
 import java.sql.*;
 import java.util.ArrayList;
 import javax.naming.NamingException;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
+import org.json.simple.*;
 import util.ConnectionPool;
 
 public class UserDAO {

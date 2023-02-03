@@ -1,3 +1,4 @@
+<%@page import="smtp.SendMail"%>
 <%@page import="jdbc.UserDAO" language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
@@ -19,10 +20,10 @@
 		// 디비에 넣기
 		result = UserDAO.insert(id, password, name);
 		if (result == 1) {
-//			out.print("회원 가입 성공");
 			request.setAttribute("title", "회원 가입 성공");
 			request.setAttribute("msg", "회원 가입을 축하드립니다. 메인 페이지로 이동합니다.");
 //			response.sendRedirect("main.jsp");
+			SendMail.sending(id, name); // 가입자에게 웰컴 메일 발송
 		}
 	}
 %>
