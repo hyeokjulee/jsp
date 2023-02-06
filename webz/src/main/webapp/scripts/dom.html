@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>dom.html</title>
+<script>
+	window.onload = function() {
+		document.querySelector('h1').style.color = 'blue';
+		document.querySelector('h2').style.color = 'red';
+	}
+</script>
+<style>
+	.cal {text-align: right; }
+	#rate {color: red; font-weight: bold; }
+</style>
+</head>
+<body>
+	<h1>자바스크립트 문서 객체 모델</h1>
+	<h2>Document Object Model</h2>
+	
+	<h3>이자 계산기</h3>
+	<form name="frm">
+		원금 <input type="number" name="wongum" min="0" step="1000" class="cal">
+			 <input type="button" id="calBtn" value="이자 계산" onclick="cal()"><br>
+		이자 <input type="text" id="eeja" disabled class="cal">
+		<br>
+		<span id="rate"></span>
+	</form>
+
+	<hr>
+	<h3>querySelector()</h3>
+	<div class="pin">query</div>
+	<div class="pin" id="ink">Selector</div>
+	<div class="pin">pink</div>
+
+	<script>
+	//h3 태그를 선택하여 글씨 색을 khaki로 지정
+	var h3 = document.querySelector('h3'); //3.태그로 찾기
+	h3.style.color = 'khaki'; //첫번째 요소에만 적용
+	
+	var pins = document.querySelectorAll('.pin'); //4.클래스로 찾기
+	for(var i=0 ; i<pins.length ; i++){
+		pins[i].style.color = 'pink';
+	}
+	
+	document.querySelector('#ink').style.fontWeight = 'bold';
+	
+	function cal(){
+		var r = 0.05;
+		var wongum = document.frm.wongum; //1.이름으로 찾기
+		var eeja = document.getElementById('eeja'); //2.아이디로 찾기
+		var rate = document.getElementById('rate');
+		
+		if(wongum.value == '' || wongum.value.length < 1){
+			alert('금액을 입력해주세요');
+			wongum.focus();
+		} else{
+			eeja.value = wongum.value * r + "원";
+			rate.innerText = '적용 이율 : ' + (r * 100) + '%';
+		}
+	}
+	
+//		document.querySelector('h1').style.color = 'orange';
+//		document.querySelector('h2').style.color = 'green';
+	</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>font.html</title>
+	<style>
+		span {border-bottom: 1px solid gray; border-top: 1px solid gray;}
+		.pct1 { font-size: 100%; }
+		.pt { font-size: 20pt; }
+		.px { font-size: 20px	; }
+		.pct2 { font-size: 200%; }
+		.em { font-size: 2em; }
+		.em > span { font-size: 2em; }
+		.rem { font-size: 2rem; }
+		.rem > span { font-size: 2rem; }
+		
+		.small { font-size: small; }
+		.smaller { font-size: smaller; }
+		.medium { font-size: medium; }
+		.large { font-size: large; }
+		.larger { font-size: larger; }
+		
+		.gen { font-family: 굴림체, "맑은 고딕", 궁서체 ; }
+		.serif { font-family: serif ; }
+		.sans { font-family: sans-serif ; }
+		.cur { font-family: cursive ; }
+		
+		.ita { font-style: italic ; }
+		
+		.wei400 { font-weight: 400 ; }
+		.wei100 { font-weight: 100 ; }
+		.wei700 { font-weight: 700 ; }
+		.weiBol { font-weight: bold ; }
+		
+		/* .line { line-height: 50px; } */
+		
+		a { text-decoration: none; }
+		.btn { font: bold italic 24px cursive; border: 10px solid white; text-align:center;
+			   background:orange; width: 100px; height:50px; box-shadow: 3px 3px 5px silver;
+			   border-radius: 20px; line-height: 50px; display: block;}
+			   
+		.all { font: bold italic small-caps 30px Arial; }
+		.gr { text-shadow: 1px 1px 2px gray;}
+		
+		.line { border: 1px solid gray; width: 100px; }
+		
+		.w2 { word-wrap: break-word; }
+		.w3 { overflow:hidden; text-overflow: ellipsis;}
+		.w4 { overflow:hidden; text-overflow: ellipsis; white-space: nowrap;}
+	</style>
+</head>
+<body>
+	<h3>wordwrap</h3>
+	<p class="w4 line">word wrap word wrap</p>
+	<p class="w4 line">wordwrapwordwrap</p>
+	<p class="w4 line">word-wrapwordwrap</p>
+	<p class="w4 line">워드wrapwordwrap</p>
+	<hr>
+	<p class="w3 line">word wrap word wrap</p>
+	<p class="w3 line">wordwrapwordwrap</p>
+	<p class="w3 line">word-wrapwordwrap</p>
+	<p class="w3 line">워드wrapwordwrap</p>
+	<hr>
+	<p class="w2 line">word wrap word wrap</p>
+	<p class="w2 line">wordwrapwordwrap</p>
+	<p class="w2 line">word-wrapwordwrap</p>
+	<p class="w2 line">워드wrapwordwrap</p>
+	<hr>
+	<p class="w1 line">word wrap word wrap</p>
+	<p class="w1 line">wordwrapwordwrap</p>
+	<p class="w1 line">word-wrapwordwrap</p>
+	<p class="w1 line">워드wrapwordwrap</p>
+
+	<h3>text style</h3>
+	<p>default</p>
+	<p style="text-indent: 20px">글자 들여쓰기 indent</p>
+	<blockquote>blockquote</blockquote>
+	<p style="text-decoration: line-through;">취소선</p>
+	<hr>
+	<a href="#" class="btn">Click</a>
+
+	<p class="all gr">FONT123 serif 굴림체</p>
+	<p class="all">FONT123 serif 굴림체</p>
+	<p class="line">FONT123 serif 굴림체 FONT123 serif 굴림체 FONT123 serif 굴림체 FONT123 serif 굴림체 FONT123 serif 굴림체 FONT123 serif 굴림체 FONT123 serif 굴림체 FONT123 serif 굴림체 FONT123 serif 굴림체</p>
+	<p>FONT123 serif 굴림체 FONT123 serif 굴림체 FONT123 serif 굴림체 FONT123 serif 굴림체 FONT123 serif 굴림체 FONT123 serif 굴림체 FONT123 serif 굴림체 FONT123 serif 굴림체 FONT123 serif 굴림체</p>
+
+	<h3>font-weight</h3>
+	<p>default 기본</p>
+	<p class="wei400">weight 400</p>
+	<p class="wei100">weight 100</p>
+	<p class="wei700">weight 700</p>
+	<p class="weiBol">weight bold</p>
+	
+	<h3>font-style</h3>
+	<p>default 기본</p>
+	<p class="ita">italic</p>
+
+	<h3>font-family</h3>
+	<p>default 기본</p>
+	<p class="cur">FONT123 serif 굴림체, "맑은 고딕", 궁서체</p>
+	<p class="sans">FONT123 serif 굴림체, "맑은 고딕", 궁서체</p>
+	<p class="serif">FONT123 serif 굴림체, "맑은 고딕", 궁서체</p>
+	<p class="gen">FONT123 굴림체, "맑은 고딕", 궁서체</p>
+
+	<h3>font-size</h3>
+	<span>default</span>
+	<span class="small">small</span>
+	<span class="smaller">smaller</span>
+	<span class="medium">medium</span>
+	<span class="large">large</span>
+	<span class="larger">larger</span>
+	
+	<hr>
+	<span>default</span>
+	<span class="pct1">100%</span>
+	<span class="pt">20pt</span>
+	<span class="px">20px</span>
+	<span class="pct2">200%</span>
+	<span class="em">2em<span>+2em</span></span>
+	<span class="rem">2rem<span>+2rem</span></span>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>changeColor.html</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<style>
+	span {display:inline-block; width:100px; }
+	div {width: 270px; padding: 10px;}
+	input {border: 5px solid; height: 33px;}
+</style>
+</head>
+<body>
+<div>
+	<h3>change colors</h3>
+	<p>
+		<span>background</span>
+		<input type="color" id="bgc">
+		<span id="s1">#000000</span>
+	</p>
+	<p>
+		<span>font</span>
+		<input type="color" id="fc">
+		<span id="s2">#000000</span>
+	</p>
+	<p>
+		<span>border</span>
+		<input type="color" id="bc">
+		<span id="s3">#000000</span>
+	</p>
+	<hr>
+	<button type="button">RESET</button>
+</div>
+	<script>
+		$('#bgc').change(function(){
+			$('#s1').text($('#bgc').val());
+			$('body').css('backgroundColor', $('#bgc').val());
+		});
+		$('#fc').change(function(){
+			$('#s2').text($('#fc').val());
+			$('div').css('color', $('#fc').val());
+		});
+		$('#bc').change(function(){
+			$('#s3').text($('#bc').val());
+			$('input').css('borderColor', $('#bc').val());
+		});
+		$('button').click(function(){
+			$('input').val('#000000');
+			$('#s1').text('#000000');
+			$('#s2').text('#000000');
+			$('#s3').text('#000000');
+			$('body').css('background', 'white');
+			$('div').css('color', 'black');
+			$('input').css('borderColor', 'black');
+		});
+	</script>
+</body>
+</html>

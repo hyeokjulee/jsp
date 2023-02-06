@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>callBackFunction.html</title>
+</head>
+<body>
+	<h3>자바스크립트 콜백 함수</h3>
+	매개변수로 전달되는 함수<br>
+	- 콜백 함수를 전달받은 쪽의 내부 로직에 따라서
+	  필요한 시점에
+	  
+
+	<script>
+	//콘솔에 '실행 성공!'을 출력하는 익명의 함수를
+	//success 변수에 저장
+	var success = function (){
+		console.log('실행 성공!');
+	}
+	
+	//code, success, error를 매개변수로 받아서
+	//code가 200이면 콘솔에 'code == 200'을 출력하고
+	//					success 함수를 호출
+	//그렇지 않으면 콘솔에 'code != 200'을 출력하고
+	//					error 함수를 호출하는
+	//someFunction 함수 작성
+	function someFunction(code, success, error){
+		if(code == 200){
+			console.log('code == 200');
+			success();
+		}else{
+			console.log('code != 200');
+			error();
+		}
+	}
+
+	someFunction(200, success, function(){
+		console.log('에러 발생!');
+	});
+	
+	someFunction(404, success, function(){
+		console.log('에러 발생!');
+	});
+	</script>
+</body>
+</html>

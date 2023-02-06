@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>border.html</title>
+	<style>
+		p {width: 100px; padding: 5px; background: lightyellow; text-align: center;
+			 border-width: 5px; border-color: orange; border-style: solid;}
+			 
+		.radius1 { border-radius: 20px; }
+		.radius2 { border-radius: 0px 20px 0px 20px; }
+		.radius3 { border-radius: 10px 10px 0px 0px; box-shadow: -3px -3px 0px gray;}
+		.radius4 { border-radius: 50%; width: 50px; box-shadow: 3px 3px 3px gray;}
+		
+		img {width:50px; height:50px; border: 1px solid gray; border-radius: 5px;}
+		img:hover {box-shadow: 1px 1px 3px gray;}
+	</style>
+</head>
+<body>
+	<h3>image border</h3>
+	<!-- 이미지를 4개 정도 추가
+		 이미지의 테두리를 지정하고 모서리는 약간 둥글게 표시
+		 마우스가 올라가면 우측과 하단으로 그림자가 나타나도록 설정하고,
+		 이미지를 클릭하면 아래 프레임에 표시되도록 처리 -->
+	<a href="../imgs/4.png" target="imgFrame">
+	<img src="../imgs/4.png">
+	</a>
+	<a href="../imgs/5.png" target="imgFrame">
+	<img src="../imgs/5.png">
+	</a>
+	
+	<img src="../imgs/6.png">
+	<img src="../imgs/7.png">
+	<hr>
+	<iframe name="imgFrame" width="250px" height="150px"></iframe>
+	
+	<hr>
+	<h3>border</h3>
+	<p class="radius4">radius 4</p>
+	<p class="radius3">radius 3</p>
+	<p class="radius2">radius 2</p>
+	<p class="radius1">radius 1</p>
+	
+	<p style="border-style: none; ">none</p>
+	<p style="border-style: solid; ">solid</p>
+	<p style="border-style: dashed; ">dashed</p>
+	<p style="border-style: dotted; ">dotted</p>
+	<p style="border-style: double; ">double</p>
+	<p style="border-style: ridge; ">ridge</p>
+	<p style="border-style: groove; ">groove</p>
+	<p style="border-style: inset; ">inset</p>
+	<p style="border-style: outset; ">outset</p>
+	<p style="border-top-style: groove; border-right-style: inset; border-bottom-style: double; border-left-style: dashed; ">mixed</p>
+	<!-- 모든 p 태그의 가로 크기는 100px
+		 내부 여백은 5px
+		 배경색 지정
+		 텍스트는 가운데 정렬 -->
+</body>
+</html>

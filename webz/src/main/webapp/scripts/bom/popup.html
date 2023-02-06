@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>popup.html</title>
+</head>
+<body onload="setTimeout('window.close()', 5000	)">
+	<h3>POPUP WINDOW</h3>
+	<span id="cho">5</span>초 후 자동으로 팝업창 종료
+	<button type="button" onclick="window.close()">window.close()</button>
+
+	<script>
+		var cnt = 5;
+		var cho = document.getElementById('cho');
+
+		function start() {
+			timer = setInterval(countDown, 1000);
+		}
+
+		function countDown() {
+			cho.textContent = cnt--;
+			if (cnt < 1) {
+				clearInterval(timer);
+				window.close();
+			}
+		}
+
+		window.onload = function() {
+			start();
+		}
+	</script>
+</body>
+</html>

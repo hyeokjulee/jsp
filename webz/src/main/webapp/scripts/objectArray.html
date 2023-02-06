@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>objectArray.html</title>
+</head>
+<body>
+	<h3>자바스크립트 배열</h3>
+	<script>
+		var list = [ 'Lee', new Date(), 3.14, true ];
+		
+		console.log(list[1]);
+		console.log(list[1].getFullYear());
+		console.log(list[1].getYear()+1900);
+		console.log(list[1].getMonth()+1);
+		console.log(list[1].getDate());
+		console.log(list[1].getDay());
+		
+		console.log(list[1].getHours() + ':' + list[1].getMinutes() + ':' + list[1].getSeconds());
+
+		for (var i = 0; i < list.length; i++) {
+			document.write(list[i] + '<br>');
+		}
+
+		list.sort(); //배열 정렬
+		document.write('--------------------------------<br>');
+		for (i in list) {
+			document.write(list[i] + '<br>');
+		}
+		
+		//연관 배열 - 인덱스 대신 key를 이용하여 값 저장
+		var veges = new Array();
+		veges['cu'] = 'cucumber';
+		veges['ra'] = 'radish';
+		veges['cb'] = 'cabbage';
+		document.write('--------------------------------<br>');
+		document.write(veges['cu'] + '<br>');
+	</script>
+</body>
+</html>

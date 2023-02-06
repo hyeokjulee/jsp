@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>regExp.html</title>
+</head>
+<body>
+	<form name="frm">
+		<input type="text" name="txt" autofocus>
+		<input type="button" name="chkInput()" value="check" onclick="chkInput()">
+	</form>
+
+	<script>
+		var txtPtn = /[\w|가-힣|`~@!#%<>\*\$]{5,10}/; //영문자, 숫자, _, 한글, 특수문자 5~10
+		var numPtn = /[0-9]/; //숫자
+		var engPtn = /[a-zA-Z]/; //영문자
+		var korPtn = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; //한글
+		var spPtn = /[`~@!#%<>\*\$]/; //특수 문자
+
+		function chkInput() {
+			var txt = document.frm.txt.value;
+
+			if(txtPtn.test(txt)){
+				if(!numPtn.test(txt)){
+					alert('숫자가 포함되지 않았습니다.');
+				}else if(!engPtn.exec(txt)){
+					alert('알파벳이 포함되지 않았습니다.');
+				}else if(!spPtn.exec(txt)){
+					alert('특수문자가 포함되지 않았습니다.');
+				}else if(txt.match(korPtn)){
+					alert('한글은 포함하실 수 없습니다.');
+				}
+			} else {
+				alert('5 ~ 10자 이내로 입력해 주세요.');
+			}
+		};
+	</script>
+</body>
+</html>

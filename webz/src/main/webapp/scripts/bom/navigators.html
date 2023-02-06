@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>navigators.html</title>
+</head>
+<body>
+	<h3>자바스크립트 navigator</h3>
+	- 현재 사용 중인 브라우저에 관한 정보 저장 객체
+	<hr>
+	<script>
+		document.write('navigator.vendor : ' + navigator.vendor);
+		document.write('<br>navigator.userAgent : ' + navigator.userAgent);
+		
+		document.write('<br>현재 사용 중인 브라우저 : '
+				+ ((navigator.userAgent.indexOf('Edg') == -1) ? '크롬' : '에지'));
+		
+		document.write('<br>현재 사용 중인 브라우저 : ');
+		if (navigator.userAgent.indexOf('Edg') != -1) {
+			document.write('에지');
+		} else {
+			document.write('크롬');
+		}
+		
+		for(key in navigator){
+			value = navigator[key];
+			document.write('<br>' + key + ' :: ' + value);
+		}
+	</script>
+</body>
+</html>

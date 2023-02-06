@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ifExercise.html</title>
+</head>
+<body>
+	<h3>회원약관</h3>
+	<form action="../htmls/result.html" name="frm">
+			<input type="hidden" name="terms" value="yes">
+			<textarea rows="5" cols="50">회원약관</textarea>
+			<br>
+			<label>
+					<input type="checkbox" name="chk">
+					약관에 동의합니다.
+			</label>
+			<hr>
+			<input type="button" value="취소">
+			<button type="button" onclick="chkTerms()">회원가입</button>
+	</form>
+	
+	<hr>
+	<h3>회원가입</h3>
+	<form action="../htmls/result.html" name="joinFrm">
+		<input type="hidden" name="email">
+		이메일
+		<input type="text" name="email1">
+		@
+		<input type="text" name="email2">
+		<select name="email3" onchange="setEmail(this)">
+			<option>직접입력</option>
+			<option>gmail.com</option>
+			<option>naver.com</option>
+			<option>nate.com</option>
+			<option>daum.net</option>
+		</select>
+	</form>
+	<script>
+		function setEmail(email3) { //이메일 선택 처리 함수
+			var email2 = document.joinFrm.email2;
+			if (email3.value == '직접입력') { //직접입력을 선택한 경우 email2의 값을 입력받도록 처리
+				email2.readOnly = false; //email2 읽기전용 해제
+				email2.focus(); //email2 포커스 맞추기
+				email2.value = ''; //email2 입력되어 있는 값 지우기
+			} else { //그외의 값을 선택한 경우, 선택한 도메인으로 email2의 값을 지정
+				email2.value = email3.value;
+				email2.readOnly = true;
+			}
+			//email1과 email2의 값을 더해서 email의 값으로 지정
+			document.joinFrm.email.value = document.joinFrm.email1.value + email2.value;
+		}
+		
+		function chkTerms() { //약관 동의 체크 여부 확인 함수
+			if (document.frm.chk.checked) {
+				document.frm.submit();
+				//폼을 전송
+			} else {
+				alert('약관에 동의하셔야 회원가입이 가능합니다.');
+			}
+		}
+	</script>
+</body>
+</html>

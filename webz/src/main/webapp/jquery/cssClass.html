@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>cssClass.html</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script>
+	$(function() {
+		$('.shadow').css('border', '1px solid gray');
+		$('.shadow').css('backgroundColor', 'lightyellow');
+		$('.shadow').css('color', 'silver').css('text-align', 'center');
+		$('.shadow').css({
+			fontStyle : 'italic',
+			boxShadow : '3px 3px 3px gray',
+			width : 200,
+			height : 30
+		});
+	});//END $
+</script>
+<style>
+.shadow {
+	text-shadow: 1px 1px 1px red;
+}
+
+div {
+	width: 200px;
+	height: 50px;
+	border: 1px solid gray;
+	text-align: center;
+	margin-bottom: 20px;
+	padding-top: 20px;
+}
+
+span {
+	padding: 10px;
+	border: 1px solid gray;
+}
+.style1 { background : #ccffee; }
+</style>
+</head>
+<body>
+	<h3 class="shadow">DOM CSS 조작</h3>
+
+	<div id="box"></div>
+	<span class="setBg">ADD</span>
+	<span class="removeBg">REMOVE</span>
+	<span class="togBg">TOG</span>
+
+	<script>
+		var box = $('#box');
+
+		$('.setBg').click(function() {
+			box.addClass('style1');
+		});
+
+		$('.removeBg').click(function() {
+			box.removeClass('style1');
+		});
+		
+		$('.togBg').hover(function() {
+			box.toggleClass('style1');
+		});
+	</script>
+</body>
+</html>

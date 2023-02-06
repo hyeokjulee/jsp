@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>clock.html</title>
+<style>
+.btn {
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+
+#clock {
+	background-color: gray;
+	color: white;
+	font-size: 25px;
+	font-weight: bold;
+	padding: 5px;
+}
+</style>
+</head>
+<body>
+	<h3>오전 | 오후 배경 색상 변경 및 오늘 날짜 표시</h3>
+	<button type="button" onclick="showDate()" class="btn">What
+		day is it today?</button>
+	<span id="clock"></span>
+	<script>
+		var date = new Date();
+		var day = [ '일', '월', '화', '수', '목', '금', '토' ];
+		var dn;
+		var hour;
+
+		function showDate() {
+			alert('오늘은 ' + date.getFullYear() + '년 ' + (date.getMonth() + 1)
+					+ '월 ' + date.getDate() + '일 ' + day[date.getDay()]
+					+ '요일입니다.');
+		}
+
+		window.onload = function() {
+			start();
+		}
+
+		function start() {
+			timer = setInterval(dateSync, 1000);
+		}
+
+		function dateSync() {
+			date = new Date();
+
+			if (date.getHours() < 12) {
+				document.body.style.backgroundColor = 'lightyellow';
+				dn = '오전';
+				hour = date.getHours();
+			} else {
+				document.body.style.backgroundColor = 'lightgray';
+				dn = '오후';
+				hour = date.getHours() - 12;
+			}
+			document.getElementById('clock').textContent = dn + ' ' + hour
+					+ '시 ' + date.getMinutes() + '분 ' + date.getSeconds() + '초';
+		}
+	</script>
+</body>
+</html>

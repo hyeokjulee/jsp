@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>locations.html</title>
+</head>
+<body>
+	<h3>자바스크립트 location</h3>
+	- href 속성 : 현재 문서의 URL 주소(특정 페이지로 이동 시에도 사용)
+	<br>
+	- replace() 함수 : 현재 문서의 URL 주소 갱신(이전 페이지 주소 기록 X - 뒤로가기 X) <br>
+	- reload() 함수 : 페이지 새로고침
+	<hr>
+	<button type="button" onclick="location.href='../../index.html'">href</button>
+	<button type="button" onclick="location.replace('../../index.html')">replace</button>
+	<button type="button" onclick="location.reload()">reload</button>
+	<button type="button" onclick="location.href='historys.html'">historys.html</button>
+	
+	<script>
+		console.log(location.href);
+		console.log(self.location);
+	</script>
+</body>
+</html>

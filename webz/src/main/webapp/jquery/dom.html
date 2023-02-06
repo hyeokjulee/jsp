@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>dom.html</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script>
+	$(function() {
+		$('#apBtn').click(function() {
+			$('ul').append('<li>CSS</li>');
+			$('<li>CSS2</li>').appendTo($('ul'));
+		});
+
+		$('#ppBtn').click(function() {
+			$('ul').prepend('<li>JAVA</li>');
+			$('<li>JAVA2</li>').prependTo($('ul'));
+		});
+
+		$('#bfBtn').click(function() {
+			$('ul').before('<h3>STEP 1.</h3>');
+			$('<h3>STEP 11.</h3>').insertBefore($('ul'));
+		});
+
+		$('#afBtn').click(function() {
+			$('ul').after('<h3>STEP 2.</h3>');
+			$('<h3>STEP 22.</h3>').insertAfter($('ul'));
+		});
+
+		$('#rmBtn').click(function() {
+			console.log($('h3').length);
+			console.log($('h3').eq(3).text());
+			console.log($('h3').eq($('h3').length-1).text());
+			/* $('h3:last-child').remove(); */
+			$('h3').eq($('h3').length-1).remove();
+		});
+
+		$('#emBtn').click(function() {
+			$('h3:last-child').empty();
+		});
+	});//END $
+</script>
+<style>
+div {border: 1px solid gray;}
+</style>
+</head>
+<body>
+	<div><h3>1</h3><h3>2</h3></div>
+
+	<button type="button" id="apBtn">APPEND</button>
+	<button type="button" id="ppBtn">PREPEND</button>
+	<button type="button" id="bfBtn">BEFORE</button>
+	<button type="button" id="afBtn">AFTER</button>
+	<button type="button" id="rmBtn">REMOVE</button>
+	<button type="button" id="emBtn">EMPTY</button>
+
+	<ul>
+		<li>database</li>
+		<li>html</li>
+	</ul>
+
+	<div><h3>3</h3><h3>4</h3></div>
+
+	<hr>
+	
+	<h3>5</h3>
+	
+	<select>
+	</select>
+
+	<script>
+		var country = [ 'Korea', 'China', 'Japan', 'Taiwan' ];
+		$.each(country ,function(i, c){
+			$('select').append('<option>' + c + '</option>');
+		});
+	</script>
+	
+	<h3>6</h3>
+</body>
+</html>

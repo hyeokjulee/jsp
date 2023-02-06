@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>effect.html</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script>
+	$(function() {
+		$('button').click(function() {
+			var lbl = $(this).text();
+			var txt = $('#txt');
+				
+			//1.기본 - 보이기/숨기기/토글
+			switch (lbl) {
+			case 'SHOW':
+				txt.show();
+				break;
+			case 'HIDE':
+				txt.hide();
+				break;
+			case 'TOGGLE':
+				txt.toggle();
+				break;
+			
+			//2.시간 지정
+			case 'SHOW':
+				txt.show('slow');
+				break;
+			case 'HIDE':
+				txt.hide('fast');
+				break;
+			case 'TOGGLE':
+				txt.toggle('normal');
+				break;
+				
+			//3.슬라이드 효과
+			case 'SLIDE DOWN':
+				txt.slideDown('slow');
+				break;
+			case 'SLIDE UP':
+				txt.slideUp('fast');
+				break;
+			case 'SLIDE TOGGLE':
+				txt.slideToggle(2000);
+				break;
+				
+			//4.fade 효과
+			case 'FADE IN':
+				txt.fadeIn('slow');
+				break;
+			case 'FADE OUT':
+				txt.fadeOut('fast');
+				break;
+			case 'FADE TOGGLE':
+				txt.fadeToggle(2000);
+				break;
+			case 'FADE TO':
+				txt.fadeTo(2000, 0.1);
+				break;
+			}
+		});
+	});//END $
+</script>
+<style>
+button {
+	width: 120px;
+	text-align: left;
+}
+
+#txt {
+	width: 400px;
+	padding: 10px;
+	border: 1px solid gray;
+	background: maroon;
+	color: white;
+}
+</style>
+</head>
+<body>
+	<button>SHOW</button>
+	<button>HIDE</button>
+	<button>TOGGLE</button>
+	<br>
+	<button>SLIDE DOWN</button>
+	<button>SLIDE UP</button>
+	<button>SLIDE TOGGLE</button>
+	<br>
+	<button>FADE IN</button>
+	<button>FADE OUT</button>
+	<button>FADE TOGGLE</button>
+	<button>FADE TO</button>
+	<hr>
+
+	<div id="txt">This document is divided into two sections: Java SE
+		The Java Platform, Standard Edition (Java SE) APIs define the core
+		Java platform for general-purpose computing. These APIs are in modules
+		whose names start with java. JDK The Java Development Kit (JDK) APIs
+		are specific to the JDK and will not necessarily be available in all
+		implementations of the Java SE Platform. These APIs are in modules
+		whose names start with jdk. All ModulesJava SEJDKOther Modules Module
+		Description java.base Defines the foundational A</div>
+
+</body>
+</html>

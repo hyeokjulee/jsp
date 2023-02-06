@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>basic.html</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<style>
+table {
+	width: 300px;
+	text-align: center;
+	visibility: hidden;
+}
+
+table, th, td {
+	border: 1px solid gray;
+	border-collapse: collapse;
+}
+</style>
+</head>
+<body>
+	<button type="button" id="loadBtn">GET load()</button>
+	<br>
+	<button type="button" id="txtBtn">GET TEXT</button>
+	<button type="button" id="xmlBtn">GET XML</button>
+	<button type="button" id="jsonBtn">GET JSON</button>
+	<button type="button" id="jspBtn">GET JSP</button>
+	<br>
+	<button type="button" id="getBtn">get( )</button>
+	<button type="button" id="getJsonBtn">getJSON( )</button>
+
+	<hr>
+	<div id="result"></div>
+
+	<table id="bookTbl">
+		<tr>
+			<th>제목</th>
+			<th>저자</th>
+			<th>가격</th>
+		</tr>
+	</table>
+
+	<script>
+		$('#getJsonBtn').click(function() {
+			$.getJSON('imgs.json', {
+				"id" : "abc"
+			}, function(result) {
+				$.each(result, function(i, obj) {
+					$("#result").append("<img src='" + obj.img + "' " + "width=50 height=50>");
+					if (i==2){
+						$("#result").append("<br>");
+					}
+				});
+				
+				/* 				var imgs = $(result).filter('img').width(50).height(50);
+				 $('#result').append(imgs.slice(0, 3));
+				 $('#result').append('<br>');
+				 $('#result').append(imgs.slice(3));
+				 */});
+		});
+
+		$('#getBtn').click(function() {
+			$.get('test.html', { //요청 url
+				"id" : "abc" //전송 데이터
+			}, function(result) { //callback 함수
+				console.log(result);
+				var imgs = $(result).filter('img').width(50).height(50);
+				$('#result').append(imgs.slice(0, 3));
+				$('#result').append('<br>');
+				$('#result').append(imgs.slice(3));
+			});
+		});
+
+		$('#jspBtn').click(function() {
+			$.ajax({
+				url : 'text.jsp',
+				type : 'get',
+				data : 'id=admin',
+				dataType : 'text',
+				success : function(result) {
+					$('#result').append('<p>' + result + '</p>');
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			});//END ajax()
+		});
+
+		$('#jsonBtn').click(
+				function() {
+					$.ajax({
+						url : 'test.json',
+						type : 'get',
+						data : '',
+						dataType : 'json',
+						success : function(result) {
+							$("#bookTbl").css('visibility', 'visible');
+
+							$.each(result, function(i, obj) {
+								$("#bookTbl").append(
+										'<tr><td>' + obj.title + '</td>'
+												+ '<td>' + obj.author + '</td>'
+												+ '<td>' + obj.price
+												+ '</td></tr>');
+							});
+						},
+						error : function(error) {
+							console.log(error); //요청 실패 시 처리
+						}
+					});//END ajax()
+				});
+
+		$('#xmlBtn')
+				.click(
+						function() {
+							$
+									.ajax({
+										url : 'test.xml',
+										type : 'get',
+										data : '',
+										dataType : 'xml',
+										success : function(result) {
+											$("#bookTbl").css('visibility',
+													'visible');
+
+											$(result)
+													.find('book')
+													.each(
+															function() {
+																title = $(this)
+																		.find(
+																				'title')
+																		.text();
+																author = $(this)
+																		.find(
+																				'author')
+																		.text();
+																price = $(this)
+																		.find(
+																				'price')
+																		.text();
+																$("#bookTbl")
+																		.append(
+																				'<tr><td>'
+																						+ title
+																						+ '</td>'
+																						+ '<td>'
+																						+ author
+																						+ '</td>'
+																						+ '<td>'
+																						+ price
+																						+ '</td></tr>');
+															});
+
+											console.log(result); //요청 성공 시 처리
+											console.log($(result).find('book'));
+											console.log($(result).find('book')
+													.find('title'));
+											console.log($(result).find('book')
+													.find('title').text());
+											console.log($(result).find('book')
+													.find('author').text());
+											console.log($(result).find('book')
+													.find('price').text());
+
+											//					$('#result').append('<p>' + result + '</p>');
+										},
+										error : function(error) {
+											console.log(error); //요청 실패 시 처리
+										}
+									});//END ajax()
+						});
+
+		$('#txtBtn').click(function() {
+			$.ajax({
+				url : 'test.txt',
+				type : 'get',
+				data : '',
+				dataType : 'text',
+				beforeSend : function() {
+					console.log('beforeSend'); //요청 시작 전 처리
+				},
+				success : function(result) {
+					console.log('success'); //요청 성공 시 처리
+					$('#result').append('<p>' + result + '</p>');
+				},
+				error : function(error) {
+					console.log(error); //요청 실패 시 처리
+				},
+				complete : function() {
+					console.log('complete'); //요청 성공 또는 실패 시 처리
+				}
+			});//END ajax()
+		});
+
+		$('#loadBtn').click(function() {
+			$('#result').load('test.txt');
+		});
+
+		/*
+		반환데이터 - readyState, status, statusText, responseXML, responseText
+		$.ajax({
+			url: '요청url',
+			type: '전송방식 get(기본값)|post|...',
+			data: '전송할 데이터',
+			dataType: '요청 데이터 타입 text|xml|json|jsonp',
+			beforesend: function(XHR, settings) {
+				//요청 시작 전 처리
+			},
+			success: function(XHR, result) {
+				//요청 성공 시 처리
+			},
+			error: function(XHR, status, error) {
+				//요청 실패 시 처리
+			},
+			complete: function(XHR, status) {
+				//요청 성공 또는 실패 시 처리
+			}
+		});//END ajax()
+		 */
+	</script>
+</body>
+</html>

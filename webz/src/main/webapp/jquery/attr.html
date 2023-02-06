@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>attr.html</title>
+<script src="../resources/script/jquery-3.6.1.js"></script>
+<script>
+	$(function() {
+		$('img').attr('src', '../imgs/2.png');
+		$('img').attr('alt', 'number two');
+
+		$('img').attr('width', '100').attr('height', '100');
+
+		$('img').attr({
+			src : '../imgs/3.png',
+			alt : 'number three',
+			width : 50,
+			height : 50
+		});
+
+		$('img').attr({
+			src : '../imgs/4.png',
+			alt : 'number four',
+			width : function(index) {
+				console.log(index);
+				return (index + 1) * 50;
+			},
+			height : function(index) {
+				console.log(index);
+				return (index + 1) * 50;
+			}
+		});
+		console.log($('h3').attr('class')); //속성 가져오기
+		$('h3').removeAttr('class') //속성 지우기
+		console.log($('h3').attr('class'));
+	});//END $
+</script>
+<style>
+.shadow {
+	text-shadow: 1px 1px 1px red;
+}
+</style>
+</head>
+<body>
+	<h3 class="shadow">DOM 속성 조작</h3>
+	<img>
+	<img>
+	<img>
+
+</body>
+</html>

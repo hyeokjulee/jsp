@@ -1,0 +1,19 @@
+[
+	{
+		"title" : "Easy java",
+		"author" : "Kim",
+		"price" : "10000"
+	},
+	
+	{
+		"title" : "Core java",
+		"author" : "Lee",
+		"price" : "20000"
+	},
+	
+	{
+		"title" : "Fun java",
+		"author" : "Han",
+		"price" : "30000"
+	}
+]

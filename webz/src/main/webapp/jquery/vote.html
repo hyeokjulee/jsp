@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>vote.html</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<style>
+		#wrapper { margin-left:auto; margin-right:auto; width:500px; padding:10px; }
+		h3 {
+			margin-left: 10px;
+		}
+		fieldset {
+			border-radius: 10px;
+			width: 400px;
+			margin-top: 10px;
+		}
+		#result {
+			height: 150px;
+		}
+		li {
+			line-height: 30px;
+		}
+		#revote, #send {
+			width: 205px;
+			height: 45px;
+			border: 1px solid gray;
+			float: left;
+			margin : 3px;
+			border-radius: 10px;
+			line-height: 45px;
+			text-align: center;
+			margin-top: 10px;
+			margin-right: 10px;
+		}
+		.style1 {
+			background: lightgray;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<h3>Let's Vote!</h3>
+		<form action="../htmls/result.html" id="frm">
+			<fieldset>
+				<legend>10 beautiful places to visit in Korea</legend>
+			</fieldset>
+			<fieldset id="result">
+				<legend>내 마음대로 TOP 3</legend>
+				<ol></ol>
+			</fieldset>
+			<div id="revote">ReVote</div>
+			<div id="send">서버로 전송</div>
+		</form>
+	</div>
+	<div id="dialog-message" title="내 마음대로 TOP 3"></div>
+	<script>
+		var places = [ '성산일출봉', '꽃지 해수욕장', '경상남도 남해 가천 다랭이마을', '부산 광안대교', '진해 경화역', 
+			'우포늪', '전남 신안 증도 염전', '설악산 신선대 공룡능선', '울릉도 해안도로', '제주도 섭지코지' ];
+		
+		$.each(places, function(i, place) {
+			$('fieldset:eq(0)').append('<input type="radio" id="id' + i + '" name="' + place + '"><label for="id'+ i +'">' 
+					+ place + '</label><br>');
+		});
+		$(':radio').on('click', function() {
+			$(this).attr('disabled', true);
+			$('#result').css('background', '#ccffee');
+			item = $(this).next().text();
+			$('ol').append('<li>' + item );
+			if($('li').length == 3){
+				$('input').attr('disabled', true);
+			}
+		});
+		$('#revote, #send').hover(function() {
+			$(this).toggleClass('style1');
+		});
+		$('#revote').click(function() {
+			location.reload();
+		});
+		$('#send').click(function() {
+			if($('li').length == 3){
+				$('input').attr('disabled', false);
+				$('form').submit();
+			} else if ($('li').length == 0) {
+				$('#dialog-message').empty().append('<p>선택된 항목이 없습니다.</p>');
+				showMessage();
+			} else {
+				$('#dialog-message').empty().append('<p>3개를 선택해주세요.</p>');
+				showMessage();
+			}
+		});
+		
+		function showMessage() {
+			$('#dialog-message').dialog({
+				modal : true,
+				buttons : {
+					Ok : function() {
+						$(this).dialog("close");
+					}
+				}
+			});
+		};
+	</script>
+</body>
+</html>

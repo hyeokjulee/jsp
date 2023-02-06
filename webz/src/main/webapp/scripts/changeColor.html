@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>changeColor.html</title>
+<style>
+	span {display:inline-block; width:100px; }
+	div {width: 270px; padding: 10px;}
+	input {border: 5px solid; height: 33px;}
+</style>
+</head>
+<body>
+<div id="d">
+	<h3>change colors</h3>
+	<p>
+		<span>background</span>
+		<input type="color" id="bgc" onchange="bgcc()" >
+		<span id="s1">#000000</span>
+	</p>
+	<p>
+		<span>font</span>
+		<input type="color" id="fc" onchange="fcc()">
+		<span id="s2">#000000</span>
+	</p>
+	<p>
+		<span>border</span>
+		<input type="color" id="bc" onchange="bcc()">
+		<span id="s3">#000000</span>
+	</p>
+	<hr>
+	<button type="button" onclick="reset()">RESET</button>
+</div>
+	
+	<script>
+		function bgcc(){
+			var rgb=document.getElementById('bgc').value;
+
+			s1.textContent = rgb;
+			
+			document.body.style.background = rgb;
+		}
+		
+		function fcc(){
+			var rgb=document.getElementById('fc').value;
+
+			s2.textContent = rgb;
+			
+			document.getElementById('d').style.color = rgb;
+		}
+		
+		function bcc(){
+			var rgb=document.getElementById('bc').value;
+
+			s3.textContent = rgb;
+			
+			document.getElementById('bgc').style.borderColor = rgb;
+			document.getElementById('fc').style.borderColor = rgb;
+			document.getElementById('bc').style.borderColor = rgb;
+		}
+		
+		function reset(){
+			s1.textContent = '#000000';
+			s2.textContent = '#000000';
+			s3.textContent = '#000000';
+			
+			document.body.style.background = 'white';
+			document.getElementById('d').style.color = 'black';
+				
+			document.getElementById('bgc').style.borderColor = 'black';
+			document.getElementById('fc').style.borderColor = 'black';
+			document.getElementById('bc').style.borderColor = 'black';
+		}
+	</script>
+</body>
+</html>

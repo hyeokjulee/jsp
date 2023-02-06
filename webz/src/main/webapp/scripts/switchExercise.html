@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>switchExercise.html</title>
+</head>
+<body>
+	<h3>컴퓨터와 가위 바위 보!</h3>
+	
+	<!--	1. 가위, 바위, 보 이미지를 화면에 표시
+			2. 사용자가 이미지 중 하나를 클릭하면
+			3. 컴퓨터가 랜덤하게 선택한 이미지와 비교하여 표시하고
+			4. 가위 바위 보 결과를 화면에 표시 -->
+			
+	<button type="button" name="scissors" onclick="match(this)">
+		<img src="../imgs/scissors.png">
+	</button>
+	<button type="button" name="rock" onclick="match(this)">
+		<img src="../imgs/rock.png">
+	</button>
+	<button type="button" name="paper" onclick="match(this)">
+		<img src="../imgs/paper.png">
+	</button>
+	<br><br><br>
+	
+	<img src="../imgs/rock.png" name="you" border="1px solid gray">
+	<span style="font-size: 100px">VS</span>
+	&nbsp;
+	<img src="../imgs/rock.png" name="com" border="1px solid gray">
+	
+	<br>
+	&nbsp;&nbsp;&nbsp;
+	<span style="font-size: 30px">YOU</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="font-size: 30px">COM</span>
+	
+	<br><br><br><br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img alt="시합결과는" style="font-size: 30px" name="result">
+	
+	<script>
+		var comNum;
+		var youNum;
+		
+		function match(you) {
+			switch (you.name) {
+			case 'scissors':
+				youNum = 0;
+				document.you.src='../imgs/scissors.png';
+				break;
+			case 'rock':
+				youNum = 1;
+				document.you.src='../imgs/rock.png';
+				break;
+			case 'paper':
+				youNum = 2;
+				document.you.src='../imgs/paper.png';
+				break;
+			}
+			
+			comNum = Math.floor(Math.random() * 3);
+			
+			switch (comNum) {
+			case 0:
+				document.com.src='../imgs/scissors.png';
+				break;
+			case 1:
+				document.com.src='../imgs/rock.png';
+				break;
+			case 2:
+				document.com.src='../imgs/paper.png';
+				break;
+			}
+
+			switch ((youNum - comNum + 3) % 3) {
+			case 0:
+				document.result.alt='DRAW!';
+				break;
+			case 1:
+				document.result.alt='YOU WIN!';
+				break;
+			case 2:
+				document.result.alt='YOU LOSE!';
+				break;
+			}
+		}
+	</script>
+</body>
+</html>

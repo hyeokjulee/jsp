@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>windows.html</title>
+</head>
+<body>
+	<h3>BOM ; Browser Object Model</h3>
+	window <br>
+	- 웹 페이지의 최상위 객체 <br>
+	- window / window.self / self 로 접근(생략 가능)
+	
+	<hr>
+	<button type="button" onclick="window.open()">window.open()</button>
+	
+	<button type="button" onclick="window.open('popup.html', '_blank', 'width=300, height=250, left=300, top = 300')">
+		POPUP WINDOW open()
+	</button>
+	
+	<hr>
+	<script>
+		document.write('문서에 출력<br>'); //windows 생략
+		window.document.write('문서에 출력'); //windows 명시적 표시
+	</script>
+</body>
+</html>

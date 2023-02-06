@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>event.html</title>
+<script>
+	window.onload = function(event) {
+		console.log(event);
+		console.log(event.type);
+	}
+</script>
+</head>
+<body>
+	<!-- 1.태그 내에 이벤트 리스너 -->
+	<h3 onmouseover="this.style.backgroundColor = 'yellow'" onmouseout="out(this)">
+		이벤트 리스너/핸들러 - mouseover mouseout
+	</h3>
+	
+	<p>paragraph</p>
+	
+	<hr>
+	<h3>이벤트의 디폴트 행동</h3>
+	<a href="https://www.google.com/" onclick="//return false;">go google X</a>
+	<br>
+	<a href="https://www.naver.com/" onclick="event.preventDefault();">go naver X</a>
+	<br>
+	<br>
+	<form action="../htmls/result.html" name="frm">
+		data : <input type="text" name="data">
+		<hr>
+		<input type="submit" value="SUBMIT">
+		<input type="submit" value="SUBMIT O" onclick="dataChk()">
+		<input type="submit" value="SUBMIT X" onclick="dataChk(); //return false;">
+		<input type="button" value="BUTTON X" onclick="dataChk();">
+		<input type="submit" value="SUBMIT X" onclick="dataChkk();">
+	</form>
+	
+	<hr>
+	<h3>keyevent</h3>
+	<form>
+		연락처 : 
+		<!-- 1.값을 선택하면 다음 칸으로 이동 -->
+		<select onchange="this.nextElementSibling.focus();">
+			<option>선택</option>
+			<option>010</option>
+			<option>02</option>
+			<option>031</option>
+			<option>033</option>
+		</select>
+		<!-- 2.숫자 4개를 입력하면 다음 칸으로 이동 -->
+		<input type="text" size="4" onkeyup="toN(this)">
+		<input type="text" size="4">
+	</form>
+	
+	<script>
+		function toN(t){
+			var regExp = /^[0-9]+$/; // /^\d+$/
+			
+			if(t.value.length > 0 && !t.value.match(regExp)){
+				alert('숫자로 입력해주세요.');
+				t.value='';
+				t.focus();
+			} else if(t.value.length == t.size){
+				t.nextElementSibling.focus();
+			}
+		}
+	
+		//브라우저에서 마우스 오른쪽 버튼 클릭 시
+		//context menu 기본 출력
+		//oncontextmenu를 false로 지정하여 취소 가능
+		document.oncontextmenu = function() {
+			alert('마우스 오른쪽 버튼 클릭 X');
+			return false;
+		}
+	
+	
+		var data = document.frm.data;
+		
+		function dataChkk(){
+			if(data.value.trim().length == 0){
+				alert('데이터는 필수입니다.');
+				event.preventDefault();
+			}else{
+				document.frm.submit();
+			}
+		}
+	
+		function dataChk(){
+			if(data.value.trim().length == 0){
+				alert('데이터는 필수입니다.');
+				return false;
+			}else{
+				document.frm.submit();
+			}
+		}
+	
+		var p = document.querySelector('p');
+		
+		//2.DOM 객체의 이벤트 리스너
+		p.onmouseover = function(){
+			p.style.color = 'red';
+		}
+		
+		//3.addEventListener()를 이용하여 이벤트 리스너 지정
+		p.addEventListener('click', function(){
+			p.style.border = "1px solid gray";
+		});
+		
+		p.addEventListener('dblclick', outtt);
+		function outtt() {
+			p.style.border = 'none';
+		}
+		
+		p.onmouseout = outt;
+		function outt() {
+			p.style.color = 'blue';
+		}
+		
+		function out(a) {
+			a.style.backgroundColor = 'green';
+		}
+	</script>
+</body>
+</html>

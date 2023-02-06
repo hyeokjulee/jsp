@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>basic.html</title>
+<!-- CDN으로 jQuery 라이브러리 지정 -->
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script>
+	window.onload = function() {
+		//HIDE 버튼을 클릭하면 'Hello jQuery!~'를 안보이게 처리
+		var hideBtn = document.getElementById('hideBtn');
+		var h3 = document.querySelector('h3');
+
+		hideBtn.onclick = function() {
+			h3.style.display = 'none';
+		};
+	}
+
+	$(document).ready(function() {
+		//HIDE 버튼을 클릭하면 'Hello jQuery!~'를 보이게 처리
+		$('#showBtn').click(function(){
+			$('h3').show();
+		});
+	});
+
+	$(function() {
+		//HIDE 버튼을 클릭하면 'Hello jQuery!~'를 보이게 처리
+		$('#hideBtn').click(function(){
+			$('h3').hide();
+		});
+	});
+</script>
+</head>
+<body>
+	<button type="button" id="showBtn">SHOW</button>
+	<button type="button" id="hideBtn">HIDE</button>
+	<h3>Hello jQuery!~</h3>
+	<h3>Hello jQuery!~</h3>
+	<h3>Hello jQuery!~</h3>
+</body>
+</html>

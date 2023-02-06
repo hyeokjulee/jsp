@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>10 beautiful places to visit in Korea</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+</head>
+<body>
+	<h3>10 beautiful places to visit in Korea</h3>
+	<div id="thumbnails"></div>
+	이미지를 클릭하시면 크게 보실 수 있습니다.
+	<hr>
+	<div id="big"></div>
+	<script>
+		var imgs = [ '0.jpg', '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg',
+				'6.jpg', '7.jpg', '8.jpg', '9.jpg' ];
+
+		//		for (var i = 0; i < imgs.length; i++) { //thumbnails에 이미지 태그 추가
+		//			$('#thumbnails').append('<img src="../imgs/' + imgs[i] + '">&nbsp;');
+		//		}
+		$.each(imgs, function(i, img) {
+			$('#thumbnails').append('<img src="../imgs/' + img + '">');
+		})//END each()
+
+		$('img').attr({
+			width : '50px', //1.가로 50px, 세로 50px로 크기 지정
+			height : '50px',
+			hspace : '2px'
+		}).css('opacity', '0.5') //2.이미지 반투명 처리
+		.on({
+			mouseover : function() { //3.이미지에 마우스가 들어오면 이미지를 선명하게 처리
+				$(this).css('opacity', '1');
+			},
+			mouseout : function() { //  이미지에서 마우스가 나가면 이미지 반투명 처리
+				$(this).css('opacity', '0.5');
+			},
+			click : function() {
+				$('#big').css('background', 'url(' + $(this).attr("src") + ') center / 100% 100% no-repeat'); //  이미지를 클릭하면 big에 이미지를 크게 표시
+			}
+		});
+
+		$('#big').css({
+			width : '300px',
+			height : '250px'
+		})
+		.dblclick(function() {
+			$(this).css('background', 'none'); //4.big을 더블클릭하면 이미지 안보이게 처리
+		});
+	</script>
+</body>
+</html>

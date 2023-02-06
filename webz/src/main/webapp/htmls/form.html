@@ -1,0 +1,255 @@
+	<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>form.html</title>
+</head>
+<body>
+	<h3>form tag</h3>
+	서버로 데이터를 전송하기 위해 사용<br>
+	<ul>
+		<li>GET 방식
+			<ul>
+				<li>URL 주소 뒤에 파라미터를 붙여서 데이터 전달</li>
+				<li>길이 제한 - 최대 2048자(4096바이트)</li>
+				<li>북마크, 뒤로가기 가능</li>
+				<li>보안 X</li>
+			</ul>
+		</li>
+		<li>POST 방식
+			<ul>
+				<li>HTTP Request 헤더에 포함시켜서 데이터 전달</li>
+				<li>길이 제한 X</li>
+				<li>북마크, 뒤로가기 X</li>
+				<li>보안 O</li>
+			</ul>
+		</li>
+		<li>
+		속성<br>
+		action : 이동 위치 URL<br>
+		method : 데이터 전송 방식 get(기본) | post<br>
+		name : 폼의 이름 지정<br>
+		id : 폼의 아이디 지정<br>
+		</li>
+	</ul>
+	
+	<hr>
+	
+	<form action="result.html">
+		<input type="text">
+		<input type="submit">
+	</form>
+
+	<form action="result.html">
+		<input type="text" name="code">
+		<input type="submit" value="GET">
+	</form>
+	
+	<form action="result.html" method="post">
+		<input type="text" name="code">
+		<input type="submit" value="POST">
+	</form>
+	<hr>
+	<form action="result.html" method="get" enctype="multipart/form-data">
+	<!-- file을 첨부했을 경우 method와 enctype 지정 필요 -->
+	<fieldset>
+	<legend>[ input tag - visible ]</legend>
+		<div>
+			<label>아이디　
+			<!-- lable 태그
+				 - input 태그의 의미 정의를 위해 사용
+				 - text, password, radio, checkbox, file에는 꼭 사용 권장
+				 -->
+			<input type="text" value="aaa" name="userid" size="15" maxlength="10" placeholder="영문자 + 숫자"
+			autocomplete="off" required autofocus>
+			</label>
+		</div>
+		<div>
+			<label>비밀번호
+			<!-- 입력 필드 크기는 15로 지정
+				 입력 텍스트 길이는 10까지만 가능
+				 입력 필드 힌트는 "영문자+숫자+특수문자"로 표시
+				 필수 입력 사항 처리
+				 -->
+			<input type="password" value="1111" name="userpw" size="15" maxlength="10"
+			placeholder="영문자 + 숫자 + 특수문자" required>
+			</label>
+		</div>
+		<div>
+			<label>성별　　</label>
+			
+			<input type="radio" name="gender" id="genderM" checked value="M">
+			<label for="genderM">남자</label>
+				
+			<label>
+				<input type="radio" name="gender" value="F">
+				여자
+			</label>
+		</div>
+		<div>
+			<label>관심분야 </label>
+			<label>
+				<input type="checkbox" name="interest" value="JAVA">
+				JAVA
+			</label>
+			<label>
+				<input type="checkbox" name="interest" value="DB">
+				DB
+			</label>
+				<input type="checkbox" name="interest" value="HTML" 
+				id="interest" checked>
+			<label for="interest">HTML</label>
+			<!-- 선택 항목의 값을 result.html로 전달할 수 있도록 처리
+					체크박스가 아니라 텍스트를 클릭해도 선택되도록 처리
+					HTML이 선택된 상태로 표시되도록 처리 -->
+		</div>
+		<div>
+			<label>이력서　 </label>
+			<!-- 텍스트 파일만 선택 가능하도록 처리 -->
+			<input type="file" name="resume" accept="text/*">
+		</div>
+		<div>
+			<label>자기소개서</label>
+			<!-- pdf 및 doc 파일만 선택 가능하도록 처리 -->
+			<input type="file" name="intro" accept=".pdf, .doc">
+		</div>
+		<div>
+			<label>사진 　 </label>
+			<!-- 이미지 파일을 다중 선택 가능하도록 처리 -->
+			<input type="file" name="photo" accept="image/*" multiple>
+		</div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>[ input tag - invisible ]</legend>
+		<input type="hidden" name="hiddenval" value="9876">
+	</fieldset>
+	
+	<fieldset>
+		<legend>[ input tag - buttons ]</legend>
+		<div>
+			<input type="reset" value="RESET">
+			<input type="button" value="BUTTON">
+			<input type="button" value="Hi~ BUTTON" onclick="alert('Hi~');">
+			<input type="submit" value="전송">
+			<input type="submit" value="post" formmethod="post">
+			
+			<!-- index 버튼 추가 
+				 버튼이 클릭되면 index.html 페이지로 post 방식으로
+				 데이터를 전송하도록 처리
+			-->
+			<input type="submit" value="index" formmethod="post" formaction="../index.html">
+			<button formmethod="post" formaction="../index.html">index</button>
+			
+			<input type="image" src="../imgs/다운로드.png" width=200 height=150>
+			<!-- 이미지 서브밋 버튼 -->
+		</div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>[ button tag ]</legend>
+		<div>
+			<button type="reset">RESET</button>
+			<button type="button">BUTTON</button>
+			<button type="button" onclick="alert('Hi~');">HI~ BUTTON</button>
+			<button type="submit">전송</button>
+			<button>
+				<img src="../imgs/다운로드.png" width=200 height=150>
+			</button>
+			<!-- 버튼 태그의 경우 타입을 생략하면 서브밋 버튼 -->
+			<button>전송</button>
+		</div>
+	</fieldset>
+	</form>
+	
+	<br><br><br>
+	
+	<form action="result.html">
+		<fieldset>
+			<legend>[input - from HTML5]</legend>
+			검색어 <input type="search" name="keyword"><br>
+			전화번호 <input type="tel" name="phone" title="입력 형식 예 : 02-1234-5678"
+			pattern="0\d{1,2}-\d{3,4}-\d{4}"><br>
+			이메일 <input type="email" name="email" required value="aaa@aaa"><br>
+			홈페이지 <input type="url" name="homepage"><br>
+			홈페이지2 <input type="url" name="homepage2" value="http://www.aaa.com" readonly>
+			<hr>
+			주문수량 <input type="number" name="quantity" value="0" step="2" max="10" min="0"><br>
+			<!-- 초기 값을 0으로 표시 
+				 주문 단위는 2씩 최대 10개
+				 마이너스 수량은 불가능하도록 처리
+			-->
+			상품레벨 <input type="range" name="level" value="0" step="2" max="10" min="0"><br>
+			희망색상 <input type="color" name="color"><br>
+			기본색상 <input type="color" name="baseColor" value="#ffffff">
+			<hr>
+			희망배송일 <input type="date" name="deliveryDate"><br>
+			배송시간 <input type="time" name="deliveryTime"><br>
+			희망배송일시 <input type="datetime-local" name="delivery">
+			<hr>
+			배송요청 사항<br>
+			<textarea rows="5" cols="50" name="requests"></textarea><br><br>
+			
+			<!-- 위의 textarea와 같은 크기로 이용약관을 명시하여 
+				 읽기 전용으로 표시 -->
+			이용약관<br>
+			<textarea rows="5" cols="50" name="terms" readonly>
+readonly
+1.회원은 사이트를 이용하려면...
+2.약관에 동의하지 않으면...
+			</textarea><br>
+			이용약관<br>
+			<textarea rows="5" cols="50" name="terms" disabled>
+disabled
+1.회원은 사이트를 이용하려면...
+2.약관에 동의하지 않으면...
+			</textarea>
+			<hr>
+			<!-- 드롭 다운 리스트 -->
+			<select name="part1">
+				<option value="자바">JAVA</option>
+				<option value="데이터베이스">DB</option>
+				<option value="html" selected>HTML</option>
+				<option value="스타일시트">CSS</option>
+				<option value="js">JavaScript</option>
+				<option value="ajax	">AJAX</option>
+			</select>
+			
+			<!-- 콤보 박스 -->
+			<select name="part2" size="4">
+				<option value="jQuery">jQuery</option>
+				<option value="JSP">JSP</option>
+				<option value="Spring Framework" selected>Spring Framework</option>
+				<option value="Project" disabled>Project</option>
+			</select>
+			
+			<!-- 목록 그룹 -->
+			<select name="part3" size="8" multiple>
+			<optgroup label="part3 - 1">
+				<option>Python</option>
+				<option>Python Data Visualization</option>
+				<option>AWS</option>
+			</optgroup>
+			<optgroup label="part3 - 2">
+				<option>Cloud</option>
+				<option>Elasticsearch</option>
+				<option>Project</option>
+			</optgroup>
+			</select>
+			<hr>
+			Browser List <input type="text" list="browsers" name="browserList">
+			<datalist id="browsers">
+				<option label="Edg" value="Edg">
+				<option label="Chrome" value="Chrome">
+				<option label="Firefox" value="Firefox">
+				<option label="Opera" value="Opera">
+			</datalist>
+			<hr>
+			<input type="hidden" name="key" value="123">
+			<input type="submit" value="INDEX" formaction="../index.html">
+			<button>SUBMIT</button>
+		</fieldset>
+	</form>
+	
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+	<h1>MEMBER ONLY SYSTEM JOIN</h1>
+	<form action="login.html" method="post" enctype="multipart/form-data" novalidate>
+		<fieldset>
+			<legend>[ 필수 항목 ]</legend>
+			<div>
+				<label>아이디　　　　
+				<input type="text" name="id" required>
+				</label>
+			</div>
+			<div>
+				<label>비밀번호　　　
+				<input type="password" name="pw" required>
+				</label>
+			</div>
+			<div>
+				<label>비밀번호확인　
+				<input type="password" name="pw2" required>
+				</label>
+			</div>
+			<div>
+				<label>이름　　　　　
+				<input type="password" name="name" required>
+				</label>
+			</div>
+		</fieldset>
+		<br>
+		<fieldset>
+		<legend>[ 선택 항목 ]</legend>
+			<div>
+				<label>이메일　　　　
+				<input type="email" name="email">
+				</label>
+			</div>
+			<div>
+				<label>성별　　　　　</label>
+				<input type="radio" name="gender" id="genderM" checked value="M">
+				<label for="genderM">남자</label>
+				<label>
+					<input type="radio" name="gender" value="F">
+					여자
+				</label>
+			</div>
+			<div>
+				<label>사진　　　　　</label>
+				<input type="file" name="photo" accept="image/*" multiple>
+			</div>
+		</fieldset>
+		<hr>
+			<input type="reset" value="다시쓰기">
+			<input type="button" value="이전으로">
+			<input type="submit" value="가입">
+	</form>
+</body>
+</html>

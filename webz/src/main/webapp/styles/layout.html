@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>layout.html</title>
+	<style>
+		* { margin: 0; padding: 0; }
+		header, nav, section, aside, footer {border: 1px solid gray;}
+		
+		@media screen and (min-width:801px) {
+			#page {width: 500px; background: #ccffee; margin: 0 auto; text-align : center;}
+			header { height: 100px; line-height: 100px;}
+			nav { height: 40px;}
+			li { display: inline-block; list-style: none; padding: 10px;}
+			main {overflow: auto;}
+			section {width: 346px; height:200px; float: left;}
+			aside {width: 150px; height:200px; float: right;}
+			footer { height: 30px;}
+		}
+		
+		@media screen and (max-width:800px) {
+			#page {width: 220px; background: #ccffee; margin: 0 auto; text-align : center;}
+			header { height: 40px; line-height: 40px;}
+			nav { height: 100px; text-align : left; }
+			li {margin-left: 30px; list-style: square;}
+			section {height:120px; }
+			aside {height:25px;}
+			footer { height: 40px; line-height:40px;}
+		}
+	</style>
+</head>
+<body>
+	<div id="page">
+		<header><h3>Header</h3></header>
+		<nav>
+			<ul>
+				<li>JAVA</li>
+				<li>Database</li>
+				<li>HTML</li>
+				<li>CSS</li>
+			</ul>
+		</nav>
+		<main>
+			<section>
+				<h3>main</h3>
+			</section>
+			<aside>
+				<h3>aside</h3>
+			</aside>
+		</main>
+		<footer>footer</footer>
+	</div>
+</body>
+</html>

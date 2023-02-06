@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>variable.html</title>
+</head>
+<body>
+	<h3>자바스크립트 변수 선언</h3>
+	<pre>
+명시적 선언
+- var를 사용
+- 실행 시 저장되는 값에 따라 자료형이 자동 결정됨
+
+비명시적 선언
+- 명시적으로 선언하지 않고 값을 대입하면 자동으로
+  데이터 타입이 결정됨
+  
+undefined
+- 값을 할당하지 않은 변수 사용시 표시
+	</pre>
+	
+	<script>
+	var x;					//변수 선언
+	var pi = 3.14;			//변수 선언 및 초기화
+	var name, age, job;		//여러 변수 동시 선언
+	var name="Kim", age=10, job='programmer';	//여러 변수 동시 선언 및 초기화
+	var person = { name:'Lee', age:20, job:"tester" };	//객체
+	
+	console.log(x);
+	console.log(pi);
+	console.log(name + ' | ' + age + ' | ' + job);
+	console.log(person.name + ' | ' + person.age + ' | ' + person.job);
+	
+	a = 100;
+	b = 200;
+	c = a + b;
+	console.log(c);
+	console.log(null);
+	console.log('-----------------------------');
+	
+	var aa = 1;
+	let bb = 2;
+	cc = 3;
+	const dd = 4;
+	console.log(aa);
+	console.log(bb);
+	console.log(cc);
+	console.log(dd);
+	console.log('-----------------------------');
+	
+	var aa = 10;
+//	let bb = 20;	block-scope 변수
+	bb = 20;		// O
+	
+	cc = 30;
+//	const dd = 40;	block-scope 상수
+//	dd = 40;		// X
+	
+	console.log(aa);
+	console.log(bb);
+	console.log(cc);
+	console.log(dd);
+	console.log('-----------------------------');
+	
+	if(true){
+		console.log(ee);
+//		console.log(ff);
+//		console.log(gg);
+		
+		var ee = 50;
+		let ff = 60;
+		gg = 70;
+	}
+	console.log(ee);
+//	console.log(ff);
+	console.log(gg);
+	</script>
+</body>
+</html>

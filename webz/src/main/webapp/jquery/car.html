@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>car.html</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<style>
+	#myCar {
+		border : 5px solid red;
+		border-radius: 15px;
+		box-shadow: 3px 3px 3px gray;
+		position: relative;
+	}
+	
+	#board {
+		width: 880px;
+		height : 550px;
+		background-image: url('../imgs/board.png');
+		background-size: 880px 550px;
+		left: 0;
+	}
+	
+	#select {
+		margin-bottom: 20px;
+	}
+	
+	.otherCars {
+		margin-top: 33px;
+		position: relative;
+	}
+	
+	#startBtn {
+	background: lightpink;
+	color: white;
+	position: absolute;
+	left: 300px;
+	top: 200px;
+	width: 300px;
+	opacity: 0.95;
+	font-weight: bold;
+	text-align: center;
+	border: 5px solid white;
+	box-shadow: 1px 1px 1px gray;
+	border-radius: 30px;
+	font-size: 50pt;
+	text-shadow: 2px 2px 2px gray;
+	height: 170px;
+	padding-top: 55px;
+	display: none;
+	}
+</style>
+</head>
+<body>
+	<div id="select"></div>
+	<div id="board"></div>
+	<div id="startBtn">START</div>
+	<script>
+		var cnt = 0;
+		
+		for (var i = 1; i <= 5; i++) {
+			$('#select').append('<img src = "../imgs/car' + i +'.png" data-no = "' + i + '">');
+		}
+		
+		function select() {
+			$('#select>img').click(function() {
+				for (var i = 1; i <= 5; i++) {
+					if($(this).data('no') != i){
+						$('#board').append('<img src = "../imgs/car' + i +'.png" class = "otherCars" data-no = "' 
+								+ i + '"><br>');
+					}
+				}
+				$('#board').append('<img src = "../imgs/car' + $(this).data('no') +'.png" id = "myCar">');
+				$('#select>img').unbind('click');
+				start();
+			});
+		};
+		
+		function start() {
+			cnt=0;
+			$('#startBtn').fadeIn('slow');
+			$('#startBtn').click(function() {
+				$(this).fadeOut('slow');
+				$('#startBtn').unbind();
+				once();
+			});
+		};
+		
+		function finish() {
+			result = true;
+			for (var i = 1; i <= 5; i++) {
+				console.log(i + ' : ' + $('#board>img:nth-of-type(' + i + ')').css('left'));
+				if($('#board>img:nth-of-type(' + i + ')').css('left') >= '700px' ){
+					$(document).unbind('keydown');
+					$('#myCar').unbind('click');
+					result = false;
+				}
+			}
+			return result;
+		};
+		
+		function race() {
+			cnt++;
+			$('#myCar').animate({ left : '+=50px' }, 100);
+			for (var i = 1; i <= 4; i++) {
+				nansu = Math.floor(Math.random() * 2);
+				if(nansu == 0){
+					$('.otherCars:nth-of-type(' + i + ')').animate({ left : '+=100px' }, 100);
+				}
+			}
+		};
+		
+		function once() {
+			$(document).keydown(function(e) {
+			    if ( e.keyCode == '39' ) {
+			    	if(finish()){
+			    		race();
+			    	}
+			    }
+			});
+			$('#myCar').click(function() {
+				if(finish()){
+		    		race();
+		    	}
+			});
+		};
+		
+		select();
+	</script>
+</body>
+</html>

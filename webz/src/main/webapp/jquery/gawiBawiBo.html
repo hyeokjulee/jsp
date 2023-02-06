@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>gawiBawiBo.html</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<style>
+#gameArea {
+	position: relative;
+	margin: auto;
+	width: 500px;
+	height: 400px;
+	text-align: center;
+	border: 5px solid lightpink;
+	box-shadow: 1px 1px 1px gray;
+	border-radius: 20px;
+}
+legend {
+	font-size: 20pt;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+img {
+	width: 150px;
+	height: 150px;
+}
+#startBtn, #resultBoard {
+	background: lightpink;
+	color: white;
+	position: absolute;
+	left: 110px;
+	top: 40px;
+	width: 300px;
+	opacity: 0.95;
+	font-weight: bold;
+	text-align: center;
+	border: 5px solid white;
+	box-shadow: 1px 1px 1px gray;
+	border-radius: 30px;
+}
+#resultBoard {
+	height: 225px;
+	display: none;
+}
+#startBtn, #big {
+	font-size: 50pt;
+	text-shadow: 2px 2px 2px gray;
+}
+#startBtn {
+	height: 170px;
+	padding-top: 55px;
+}
+#big {
+	padding-top: 20px;
+}
+#small1, #small2, #small3, #stop, #continue {
+	text-shadow: 1px 1px 1px gray;
+}
+#stop, #continue {
+	width: 80px;
+	height: 35px;
+	line-height: 35px;
+	border: 3px solid lightpink;
+	float: left;
+	margin-top: 25px;
+	border-radius: 10px;
+	text-align: center;
+	background: white;
+	color: lightpink;
+	box-shadow: 1px 1px 1px gray;
+		}
+#stop {
+	margin-left: 60px;
+}
+#continue {
+	margin-left:10px;
+}
+.style1 {
+	border: 1px solid lightpink;
+	border-radius: 10px;
+	box-shadow: 1px 1px 3px silver; 
+}
+#stop:hover, #continue:hover {
+	border: 3px dashed white;
+	background: lightpink;
+	color: white;
+}
+</style>
+</head>
+<body>
+	<fieldset id="gameArea">
+		<legend>가위 바위 보 ver 0.2</legend>
+		<img src="../imgs/gawi.png" id="comImg">
+		<img src="../imgs/vs.png">
+		<img src="../imgs/question.png" id="manImg" data-no="">
+		<hr>
+		<img src="../imgs/gawi.png" class="gababo" data-no="0" id="gawi">
+		<img src="../imgs/bawi.png" class="gababo" data-no="1" id="bawi">
+		<img src="../imgs/bo.png" class="gababo" data-no="2" id="bo">
+
+		<div id="startBtn">START</div>
+		<div id="resultBoard">
+			<div id="big"></div>
+			<div id="small1"></div>
+			<div id="small2"></div>
+			<div id="small3"></div>
+			<div id="stop">그만</div>
+			<div id="continue">계속</div>
+		</div>
+	</fieldset>
+	<script>
+		randomImg = ['../imgs/gawi.png', '../imgs/bawi.png', '../imgs/bo.png'];
+		timer = ''; //setInterval() 저장
+		interval = 100; //컴퓨터 이미지 변경 간격
+		comNum = 0;
+		
+		function start() { //게임 시작하기
+			$('#startBtn').click(function() {
+				$(this).fadeOut('slow'); //1.start 버튼을 클릭하면 start 버튼이 사라지고
+				timer = setInterval(changeImg, interval);
+				hover();
+				click();
+				$('#startBtn').unbind();
+			});
+		};
+		function changeImg() { //난수 추출 및 이미지 변경
+			while (true) {
+				nansu = Math.floor(Math.random() * 3);	//컴퓨터의 가위바위보 값
+				if(comNum != nansu){
+					comNum = nansu;
+					$('#comImg').attr('src', randomImg[comNum]); //2.컴퓨터 이미지가 랜덤하게 변경됨
+					break;
+				}
+			}
+		};
+		function hover(){
+			$('.gababo').hover(function() {
+				$(this).toggleClass('style1');
+			});
+		};
+		function click(){
+			$('.gababo').click(function() { //3.사람이 화면 하단의 가위, 바위, 보 중 하나를 클릭하면
+				$(this).removeClass('style1');
+				$('#manImg').attr('src', $(this).attr('src')).data('no', $(this).data('no')); //  물음표 이미지가 선택한 이미지로 변경됨
+				clearInterval(timer);
+				play();
+				resultBoard();
+				$('.gababo').unbind();
+			});
+		};
+		function resultBoard() { //게임 결과 표시
+			$('#resultBoard').fadeIn('slow'); //4.컴퓨터와 대결한 결과가 화면에 표시되고
+		};
+		function play() { //가위 바위 보 대결
+			manNum = $('#manImg').data('no');	//사람의 가위바위보 값
+			switch ((manNum - comNum + 3) % 3) {
+			case 0:
+				$('#big').text('DRAW!');
+				draw++;
+				break;
+			case 1:
+				$('#big').text('U WIN!');
+				manSum++;
+				break;
+			case 2:
+				$('#big').text('U LOSE!');
+				comSum++;
+				break;
+			}
+			$('#small1').text('[ ROUND ' + round + ' ]');
+			$('#small2').text('컴 ' + comSum + ' vs. ' + manSum + ' 나');
+			$('#small3').text(manSum + '승 ' + draw + '무 ' + comSum + '패');
+			round++;
+		};
+		function quit() { //게임 종료하기
+			round=1;
+			comSum=0;
+			manSum=0;
+			draw=0;
+			$('#manImg').attr('src', '../imgs/question.png');
+			$('#comImg').attr('src', '../imgs/gawi.png');
+		};
+		
+		quit();
+		start();
+		$('#continue').unbind().click(function() {
+			$('#resultBoard').fadeOut(); //5.게임 계속하기를 선택하면 대결 결과가 사라지고 1 ~ 4를 반복
+			timer = setInterval(changeImg, interval);
+			hover();
+			click();
+			$('#manImg').attr('src', '../imgs/question.png');
+		});
+		$('#stop').unbind().click(function() {
+			chk = confirm('게임을 그만하시겠습니까?');
+			if (chk) {
+				quit();
+				$('#resultBoard').fadeOut();
+				$('#startBtn').slideDown('slow'); // 게임 그만하기를 선택하면 화면에 start 버튼을 표시
+				start();
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>text.html</title>
+</head>
+<body>
+	<h3>innerText</h3>
+	- 공백 문자는 하나만 HTML 태그 반영 X 텍스트 반환
+	
+	<h3>innerHTML</h3>
+	- 공백 문자와 HTML 태그 반영 O
+	
+	<h3>textContent</h3>
+	-공백 문자는 반영 O, HTML 태그는 X
+	
+	<hr>
+	<h4>오늘의 할 일</h4>
+	<button type="button" onclick="getTodo()">확인하기</button>
+	<button type="button" onclick="resetTodo()">지우기</button>
+	<br>
+	<ul id="todo">
+		<li>p     review</li>
+		<li>s     tudy</li>
+		<li>r     eview</li>
+	</ul>
+	
+	<script>
+		function resetTodo(){
+			var data = '<b>d     eted\n!!</b>';
+			var lis = document.querySelectorAll('li');
+			lis[0].innerText = data;
+			lis[1].innerHTML = data;
+			lis[2].textContent = data;
+		}
+		
+		function getTodo(){
+			var text = document.getElementById('todo').innerText;
+			var html = document.getElementById('todo').innerHTML;
+			var cont = document.getElementById('todo').textContent;
+			
+			console.log(text);
+			console.log(html);
+			console.log(cont);
+		}		
+	</script>
+</body>
+</html>

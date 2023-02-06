@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>switchExercise.html</title>
+</head>
+<body>
+	<h3>컴퓨터와 가위 바위 보!</h3>
+
+	<!--	1. 가위, 바위, 보 이미지를 화면에 표시
+			2. 사용자가 이미지 중 하나를 클릭하면
+			3. 컴퓨터가 랜덤하게 선택한 이미지와 비교하여 표시하고
+			4. 가위 바위 보 결과를 화면에 표시 -->
+
+	<script>
+		var comNum = Math.floor(Math.random() * 3);
+		var com;
+		switch (comNum) {
+		case 0:
+			com = '가위';
+			break;
+		case 1:
+			com = '바위';
+			break;
+		case 2:
+			com = '보';
+			break;
+		}
+
+		var you = prompt('가위 바위 보 중 하나를 입력해주세요.');
+		var youNum;
+		switch (you) {
+		case '가위':
+			youNum = 0;
+			break;
+		case '바위':
+			youNum = 1;
+			break;
+		case '보':
+			youNum = 2;
+			break;
+		default:
+			youNum = -1;
+			break;
+		}
+
+		if (youNum != -1) {
+			document.write('컴퓨터:' + com + ' vs. 사람:' + you);
+		} else {
+			document.write('잘못된 값이 입력되었습니다. 게임을 종료합니다.');
+		}
+	</script>
+</body>
+</html>

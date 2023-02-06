@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>objectString.html</title>
+</head>
+<body>
+	<h3>자바스크립트 String</h3>
+	<script>
+		var str = "문자열 리터럴";
+		var obj = new String("문자열 객체");
+		
+		console.log(typeof str);
+		console.log(typeof obj);
+		
+		str = "Hello World!~";
+		console.log(str.toLowerCase());
+		console.log(str.toUpperCase());
+		console.log(str.substring(6, 10));
+		console.log(str.substr(6, 10));
+		console.log(str.substr(6, 5));
+		console.log('------------------------');
+		console.log(str.substring(6));
+		console.log(str.substr(6));
+		console.log('------------------------');
+		console.log(str.charAt(6));
+		console.log(str.indexOf('W'));
+		console.log(str.indexOf('w'));
+		console.log(str.lastIndexOf('O'));
+		console.log(str.lastIndexOf('o'));
+		console.log('------------------------');
+		console.log(str.replace('World', 'Javascript'));
+		console.log(str.split(' '));
+	</script>
+</body>
+</html>

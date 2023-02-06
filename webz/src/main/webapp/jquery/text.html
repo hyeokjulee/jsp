@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>text.html</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+</head>
+<body>
+	<button type="button" id="getTxt">GET text</button>
+	<button type="button" id="setTxt">SET text</button>
+
+	<button type="button" id="getHtm">GET html</button>
+	<button type="button" id="setHtm">SET html</button>
+	<hr>
+	<input type="text" id="inputTxt">
+	<button type="button" id="getVal">GET val</button>
+	<button type="button" id="setVal">SET val</button>
+
+	<h3>Hello jQuery!~</h3>
+
+	<script>
+		var str = "Let's <em>jQuery!</em>";
+
+		$('#getTxt').click(function() {
+			alert($('h3').text()); //h3 태그의 텍스트 읽어오기
+		});
+
+		$('#setTxt').click(function() {
+			$('h3').text(str); //h3 태그의 텍스트 설정
+		});
+
+		$('#getHtm').click(function() {
+			alert($('h3').html()); //html 읽어오기
+		});
+
+		$('#setHtm').click(function() {
+			$('h3').html(str); //html 설정
+		});
+
+		$('#getVal').click(function() {
+			alert($('#inputTxt').val()); //입력양식 값 읽어오기
+		});
+
+		$('#setVal').click(function() {
+			$('#inputTxt').val(str); //입력양식에 값 설정
+		});
+	</script>
+</body>
+</html>

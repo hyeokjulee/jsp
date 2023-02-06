@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>event.html</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script>
+	$(function() {
+		$('#apdBtnO').click(function() { //이벤트 핸들러 지정
+			$('ul').append('<li>new item ' + $('li').length);
+		});
+
+		$('#apdBtnX').click(function() {
+			alert('더이상 li 추가 불가')
+			$('#apdBtnO').unbind('click') //이벤트 핸들러 해제
+			.attr('disabled', 'disabled');
+		});
+
+		//li를 클릭하면 li의 텍스트를 읽어와서 확인창으로 표시하고
+		//삭제를 확인하면 클릭된 li 지우기
+		$('li').click(function() {
+			var chk = confirm($(this).text() + '를 삭제하시겠습니까?');
+			if (chk) {
+				$(this).remove(); //동적 생성 객체 삭제 불가
+			}
+		});
+
+		$('ul').on('click', 'li', function() { //모든 li 대상
+			var chk = confirm($(this).text() + '를 지우시겠습니까?');
+			if (chk) {
+				$(this).remove(); //동적 생성 객체 삭제 가능
+			}
+		});
+
+		$('#offBtn').click(function() {
+			alert('새로 추가된 li 삭제 불가');
+			$('ul').off('click');
+		});
+
+		$('#oneBtn').one('click', function() {
+			alert('한 번만 출력!!');
+		});
+
+		///////////////////////마우스 이벤트///////////////////////
+		$('#display').mouseover(function() {
+			$(this).text('mouse over');
+		});
+
+		$('#display').on('mouseout', function() {
+			$(this).text('mouse out');
+		});
+
+		//마우스가 눌릴 때 'mouse down'으로 텍스트 및 좌표 표시
+		//	"	   올라갈 때 "    up    "
+		//	"	   움직일 때 콘솔로 이동 좌표 표시
+		$('#display').on({
+			mousedown : function(event) {
+				$(this).text('mouse down ');
+				$('#xy').text('클릭지점 x:' + event.pageX + ", y:" + event.pageY);
+			},
+			mouseup : function(event) {
+				$(this).text('mouse up ');
+			},
+			mousemove : function(event) {
+				console.log("x:" + event.pageX + ", y:" + event.pageY)
+			}
+		});
+
+		//a 태그가 클릭되면 href 속성의 값을 경고창으로 표시
+		$('a').click(function(event) {
+			event.preventDefault();
+			alert($(this).attr('href'));
+		});
+	});//$
+</script>
+<style>
+#display {
+	background-color: yellow;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	padding: 50px;
+}
+</style>
+</head>
+<body>
+	<a href="../index.html">preventDefault()</a>
+
+	<div id="display">mouse event</div>
+	<div id="xy">클릭지점</div>
+
+	<hr>
+	<button id='apdBtnO'>append &lt;li&gt; O</button>
+	<button id='apdBtnX'>append &lt;li&gt; X</button>
+	<button id='offBtn'>delete &lt;li&gt; X</button>
+	<button id='oneBtn'>only once</button>
+	<hr>
+	<ul>
+		<li>click! delete!</li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 id="top">Heading tag h1</h1>
+	<a href="#end">맨 마지막으로 이동</a>
+	<h2>Heading tag h2</h2>
+	<h3>Heading tag h3</h3>
+	<h4>Heading tag h4</h4>
+	<h5>Heading tag h5</h5>
+	<h6>Heading tag h6</h6>
+	<!--
+	<h7>Heading tag h7</h7>
+	<h8>Heading tag h8</h8>
+	-->
+	<hr>
+	<p>문단 구분은 p tag를 사용</p>
+	<p>두 번째 문단 p tag</p>
+	<hr>
+	<h1>Java SE</h1>
+	<p>
+		The Java Platform, Standard Edition (Java SE) APIs define the<br>
+		core Java platform for general-purpose computing. These APIs are in<br>
+		modules whose names start with java.
+	</p>
+
+	<h1>JDK</h1>
+	<p>
+		The Java Development Kit (JDK) APIs are specific to the JDK and<br>
+		will not necessarily be available in all implementations of the Java<br>
+		SE Platform. These APIs are in modules whose names start with jdk.
+	</p>
+	<hr>
+	<h2>JAVA SE 11 API DOCUMENT view</h2>
+	<h2>
+		<a href="https://docs.oracle.com/en/java/javase/11/docs/api/">
+			JAVA SE 11 API DOCUMENT view - 현재 탭에 표시 </a>
+	</h2>
+	<h2>
+		<a href="https://docs.oracle.com/en/java/javase/11/docs/api/"
+		target="_blank">
+			JAVA SE 11 API DOCUMENT view - 새로운 탭에 표시 </a>
+	</h2>
+	<hr>
+	<h3>&lt;a&gt; anchor tag</h3>
+	- hyper text<br>
+	- 다른 웹 페이지 또는 현재 페이지 내부의 특정 위치로 이동<br>
+	- 이미지 파일의 링크에도 사용 가능<br>
+	- 기본은 현재 탭에서 표시<br>
+	- target 속성을 이용하여 새로운 윈도우로 표시 가능<br>
+	- 지정 가능한 자원 <br>
+	&nbsp; HTML 문서, 다른 웹페이지, 텍스트/이미지/동영상/사운드 파일, 자바스크립트 함수 실행 가능<br>
+	- link exercise<br>
+	<blockquote>
+		<a href="../index.html">index.html 상대경로</a>
+		<a href="/webz/index.html">index.html 절대경로</a>
+		<a href="/webz">index.html root directory 지정</a>
+		<br>
+			1.현재 문서와 같은 경로의 이미지 파일 표시
+		<br>
+			&nbsp; 이미지를 클릭하면 새로운 탭에 표시
+		<br>
+		<a href="1.png" target="_blank">
+		<img src="1.png">
+		</a>
+		<br>
+			2.현재 문서의 옆 폴더의 이미지 파일 표시
+		<br>
+		<img src="../imgs/2.png">
+		<br>
+			3.현재 문서의 상위 폴더의 이미지 파일 표시
+		<br>
+		<img src="../0.png">		
+		<hr>
+		<a href="../resources/requirements.txt">
+			요구사항 보기
+		</a>
+		<br>
+		<a href="../resources/requirements.zip">
+			요구사항 다운로드
+		</a>
+		<br>
+		<a href="../resources/music.mp3">
+			music.mp3
+		</a>
+		<br>
+		<a href="../resources/trailer.mp4">
+			trailer.mp4
+		</a>
+		<br>
+		<a href="javascript:alert('Hello World!~');">
+			javascript alert() 표시
+		</a>
+		<br>
+		<a href="javascript:alerttt('Hello World!~');">
+			javascript alerttt() 표시
+		</a>
+		<br>
+		<a href="mailto:aaa@aaa.com">
+			send email
+		</a>
+		<hr>
+		Query String<br>
+		- 웹 서버로 전달하는 문자열 데이터<br>
+		- 클라이언트에서 입력한 데이터는 Encoding하여 전송<br>
+		- &lg;meta charset="UTF-8"&gt;<br>
+		- 아스키코드를 제외한 나머지 문자는 %기호와 함께 16진수로 변환됨<br>
+		- 받는 쪽에서 복원 처리를 하지 않으면 깨질 수 있음<br>
+		<br>
+		<a href="result.html?code=1234">
+			send code to result.html</a><br>
+		<a href="result.html?key=열쇠">
+			send key to result.html</a><br>
+		<a href="result.html?code=1234&key=열  쇠">
+			send code and key to result.html</a><br>
+		
+	</blockquote>	
+	
+	<h3>pre tag</h3>
+	<pre>
+	pre tag				is
+	
+	
+	
+입력하는 그대로 표시
+   공백, 엔터, 탭 모두 반영됨
+	.....
+	</pre>
+	
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<a href="#top" id="end">GO TO TOP</a>
+</body>
+</html>
+

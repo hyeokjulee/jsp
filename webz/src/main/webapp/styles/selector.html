@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>selector.html</title>
+<style>
+	* { color : gray; } /* 전체 선택자 */
+	h2 { color : maroon; } /* 타입 선택자 */
+	#modu { color : red; } /* 아이디 선택자 */
+	.blu { color : blue; } /* 클래스 선택자 */
+	h2.blu { color : lightblue; }
+	.bg { background : navy; }
+	
+	input[type] { background : lightyellow; } /* 속성 선택자 */
+	button[type="button"] { background : lightpink; } /* 속성 선택자 */
+	a[title~="rose"] { background:hotpink; }
+	a[title|="black"] { background:orange; }
+	
+	/* ----------------- 결합 선택자 ------------------- */
+	p > em { background : gray; color : white; } /* 자식 선택자 */
+	ul li { font-weight: bold;} /* 후손 선택자 */
+	p + p { border: 1px solid red; } /* 바로 다음 형제 선택자 */
+	li.bro ~ li { background : #ccffee;} /* 다음의 모든 형제 선택자 */
+	#child1, #child2 { font-size:20pt; } /* 그룹 선택자 */
+</style>
+</head>
+<body>
+	<h1 style="color:black;">CSS selector</h1>
+	
+	<h2 class="blu bg">Let's CSS!</h2>
+	<h2>What <em class="blu">selector</em> is?</h2>
+	
+	<ol>
+		<li>기본 선택자
+			<ul>
+				<li id="modu">전체 선택자 : *</li>
+				<li class="blu">타입 선택자 : 요소 이름</li>
+				<li>아이디 선택자 : #아이디</li>
+				<li>클래스 선택자 : .클래스 | 요소명.클래스</li>
+				<li>속성 선택자 <br>
+					<input type="text"><br>
+					<input type="password">
+					<input type="reset">
+					<button type="button">BUTTON</button>
+					<hr>
+					<a href="#" title="black rose">ROSE</a>
+					<a href="#" title="black-orange">ORANGE</a>
+				</li>
+			</ul>
+		</li>
+		<li>결합 선택자
+			<p><em id="child1">자식</em>, 후손, 형제, 그룹<p>
+			<p>&gt; space + ~ ,</p>
+			<ul>
+				<li  id="child2">
+					<em>자식 선택자</em> &gt;
+				</li>
+				<li>후손 선택자 space</li>
+				<li class="bro">바로 뒤의 형제 선택자 + <li>
+				<li>다음에 오는 형제 선택자 ~ </li>
+				<li>그룹 선택자 ,
+					<p>콤마로 구분하여 여러 선택자들을 한꺼번에 선택</p>
+				</li>
+			</ul>
+				<p>문맥이나 요소의 구조를 기반으로 결합</p>
+		</li>
+	</ol>
+	
+</body>
+</html>

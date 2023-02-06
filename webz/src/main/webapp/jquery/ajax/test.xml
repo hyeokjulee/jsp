@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+	<book>
+		<title>Easy java</title>
+		<author>Kim</author>
+		<price>10000</price>
+	</book>
+	<book>
+		<title>Core java</title>
+		<author>Lee</author>
+		<price>20000</price>
+	</book>
+	<book>
+		<title>Fun java</title>
+		<author>Han</author>
+		<price>30000</price>
+	</book>
+</books>
