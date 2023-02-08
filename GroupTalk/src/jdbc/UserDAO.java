@@ -20,8 +20,27 @@ public class UserDAO {
 			return pstmt.executeUpdate();
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();
+			
+			return 0;
 		}
-		return 0;
+	}
+	
+	public static int edit(String id, String password, String name) { // 회원 가입
+		try {
+			String sql = "UPDATE user SET password = ?, name = ? WHERE id = ?";
+			
+			Connection conn = ConnectionPool.get();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, password);
+			pstmt.setString(2, name);
+			pstmt.setString(3, id);
+			
+			return pstmt.executeUpdate();
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+			
+			return 0;
+		}
 	}
 
 	public static boolean exist(String id) { // 회원 가입시 아이디가 이미 존재하는지 여부 확인
