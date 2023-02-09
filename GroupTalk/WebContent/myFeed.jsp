@@ -47,9 +47,9 @@
 			<table class="table table-hover">
 			  <thead>
 			    <tr>
-			      <th scope="col" class="col-1">작성자</th>
-			      <th scope="col" class="col-9">내용</th>
-			      <th scope="col" class="col-1">작성일</th>
+			      <th scope="col" class="col-2">작성자</th>
+			      <th scope="col" class="col-7">내용</th>
+			      <th scope="col" class="col-2">작성일</th>
 			      <th scope="col" class="col-1"></th>
 			    </tr>
 			  </thead>
@@ -112,7 +112,7 @@
 						str += "<td>";
 						
 						if(feeds[i].id == "<%=sid%>"){
-							str += "<div onclick='delItem(\"" + feeds[i].no + "\")'><span class='text-danger'>Delete</span></div>";
+							str += "<div onclick='delItem(\"" + feeds[i].no + "\")'><span class='btn btn-danger'>Delete</span></div>";
 						}
 						
 						str += "</td></tr>";

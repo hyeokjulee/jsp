@@ -7,9 +7,9 @@ import org.json.simple.*;
 import util.ConnectionPool;
 
 public class UserDAO {
-	public static int insert(String id, String password, String name) { // 회원 가입
+	public static int insertTemp(String id, String password, String name) { // 임시 회원 가입
 		try {
-			String sql = "INSERT INTO user (id, password, name) VALUES(?, ?, ?)";
+			String sql = "INSERT INTO temp (id, password, name) VALUES(?, ?, ?)";
 			
 			Connection conn = ConnectionPool.get();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -22,6 +22,32 @@ public class UserDAO {
 			e.printStackTrace();
 			
 			return 0;
+		}
+	}
+	
+	public static String insertAdmin(String id, String password, String name) { // 회원 가입
+		try {
+			String sql = "INSERT INTO user (id, password, name) VALUES(?, ?, ?)";
+			
+			Connection conn = ConnectionPool.get();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			pstmt.setString(3, name);
+			
+			if (pstmt.executeUpdate() == 1) {
+				JSONObject obj = new JSONObject();
+				
+				obj.put("id", id);
+				
+				return obj.toJSONString();
+			} else {
+				return null;
+			}
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+			
+			return null;
 		}
 	}
 	
@@ -60,10 +86,44 @@ public class UserDAO {
 		}
 		return false;
 	}
+	
+	public static boolean existTemp(String id) { // 회원 가입시 아이디가 임시 리스트에 이미 존재하는지 여부 확인
+		try {
+			String sql = "SELECT * FROM temp WHERE id = ?";
+			
+			Connection conn = ConnectionPool.get();
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			return rs.next();
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	public static int delete(String id) { // 회원 탈퇴
 		try {
 			String sql = "DELETE FROM user WHERE id = ?";
+			
+			Connection conn = ConnectionPool.get();
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			return pstmt.executeUpdate();
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public static int deleteTemp(String id) { // 회원 가입 거부
+		try {
+			String sql = "DELETE FROM temp WHERE id = ?";
 			
 			Connection conn = ConnectionPool.get();
 			
@@ -133,6 +193,37 @@ public class UserDAO {
 	public static String listAJAX() { //AJAX로 모든 리스트 출력 메서드
 		try {
 			String sql = "SELECT * FROM user ORDER BY ts DESC";
+			
+			Connection conn = ConnectionPool.get();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			
+			JSONArray users = new JSONArray();
+			
+			while (rs.next()) {
+				JSONObject obj = new JSONObject();
+				obj.put("id", rs.getString(1));
+				obj.put("password", rs.getString(2));
+				obj.put("name", rs.getString(3));
+				obj.put("ts", rs.getString(4));
+				
+				users.add(obj);
+			}
+			
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+			return users.toJSONString();
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static String getTemp() { //AJAX로 가입 신청자 리스트 출력 메서드
+		try {
+			String sql = "SELECT * FROM temp ORDER BY ts DESC";
 			
 			Connection conn = ConnectionPool.get();
 			PreparedStatement pstmt = conn.prepareStatement(sql);

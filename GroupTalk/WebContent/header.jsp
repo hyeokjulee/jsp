@@ -51,8 +51,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">관리메뉴</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/ajax/userallAJAX.jsp">회원관리</a></li>
-            <li><a class="dropdown-item" href="/ajax/feedallAJAX.jsp">게시물관리</a></li>
+            <li><a class="dropdown-item" href="/admin/temp.jsp">신청목록</a></li>
           </ul>
         </li>
 <%

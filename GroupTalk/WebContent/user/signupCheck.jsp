@@ -10,19 +10,23 @@
 	int result = 0;
 	
 	boolean b = UserDAO.exist(id);
+	boolean c = UserDAO.existTemp(id);
 	
 	// 이미 DB에 사용중인 아이디인지 먼저 확인
 	if (b) {
 		request.setAttribute("title", "이미 존재하는 아이디입니다.");
 		request.setAttribute("msg", "다른 아이디를 사용하여 가입해주세요.");
+	} else if (c) {
+		request.setAttribute("title", "회원가입 신청이 되어있는 아이디입니다.");
+		request.setAttribute("msg", "다른 아이디를 사용하여 가입해주세요.");
 	} else {
 		// 디비에 넣기
-		result = UserDAO.insert(id, password, name);
+		result = UserDAO.insertTemp(id, password, name);
 		if (result == 1) {
-			request.setAttribute("title", "회원 가입 성공");
-			request.setAttribute("msg", "회원 가입을 축하드립니다. 로그인 페이지로 이동합니다.");
+			request.setAttribute("title", "회원 가입 신청 완료");
+			request.setAttribute("msg", "회원 가입 신청을 완료하였습니다. 관리자의 확인 후 24시간 이내에 승인/거부 처리됩니다.");
 
-			SendMail.sending(id, name); // 가입자에게 웰컴 메일 발송
+//			SendMail.sending(id, name); // 가입자에게 웰컴 메일 발송
 		}
 	}
 %>
@@ -47,7 +51,7 @@
 	        <%=request.getAttribute("msg") %>
 	      </div>
 	      <div class="modal-footer">
-	      <% if (b) { %>
+	      <% if (b || c) { %>
 	      	<button type="button" class="btn btn-primary" onclick="history.back();">뒤로 가기</button>
 	      <% } else { %>
 	        <button type="button" class="btn btn-primary" onclick="location.href='login.jsp';">로그인 페이지로 이동</button>

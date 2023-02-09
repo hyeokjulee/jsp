@@ -11,7 +11,7 @@
 	
 	if (result == 1) {
 		request.setAttribute("title", "정보 수정 성공");
-		request.setAttribute("msg", "로그인 페이지로 이동합니다.");
+		request.setAttribute("msg", "메인 페이지로 이동합니다.");
 	} else {
 		request.setAttribute("title", "정보 수정 실패");
 		request.setAttribute("msg", "다시 시도해주세요.");
@@ -40,7 +40,7 @@
 	      </div>
 	      <div class="modal-footer">
 	      <% if (result == 1) { %>
-	        <button type="button" class="btn btn-primary" onclick="location.href='login.jsp';">로그인 페이지로 이동</button>
+	        <button type="button" class="btn btn-primary" onclick="location.href='/main.jsp';">메인 페이지로 이동</button>
 	      <% } else { %>
 	      	<button type="button" class="btn btn-primary" onclick="history.back();">뒤로 가기</button>
 	      <% } %>
