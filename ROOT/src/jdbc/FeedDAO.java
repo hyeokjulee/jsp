@@ -7,7 +7,7 @@ import org.json.simple.*;
 import util.ConnectionPool;
 
 public class FeedDAO {
-	public static boolean insert(String id, String content) {
+	public static int insert(String id, String content) {
 		try {
 			String sql = "INSERT INTO feed (id, content) VALUES(?, ?)";
 			
@@ -16,21 +16,20 @@ public class FeedDAO {
 			pstmt.setString(1, id);
 			pstmt.setString(2, content);
 			
-			if(pstmt.executeUpdate() == 1) {
-				pstmt.close();
-				conn.close();
-				return true;
-			} else {
-				pstmt.close();
-				conn.close();
-			}
+			int result = pstmt.executeUpdate();
+			
+			pstmt.close();	
+			conn.close();
+			
+			return result;
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();
+			
+			return 0;
 		}
-		return false;
 	}
 	
-	public static String getListAJAX() { //AJAX로 모든 리스트 출력 메서드
+	public static String getList() { //AJAX로 모든 리스트 출력 메서드
 		try {
 			String sql = "SELECT * FROM feed ORDER BY ts DESC";
 			
@@ -42,10 +41,13 @@ public class FeedDAO {
 			
 			while (rs.next()) {
 				JSONObject obj = new JSONObject();
+				
+				String ts = rs.getString(4).split(" ")[0].substring(2);
+				
 				obj.put("no", rs.getString(1));
 				obj.put("id", rs.getString(2));
 				obj.put("content", rs.getString(3));
-				obj.put("ts", rs.getString(4));
+				obj.put("ts", ts);
 				
 				feeds.add(obj);
 			}
@@ -57,63 +59,48 @@ public class FeedDAO {
 			return feeds.toJSONString();
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();
+			
+			return null;
 		}
-		return null;
 	}
 	
-	public static ArrayList<FeedDTO> getAllList() { //관리자용 모든 메모 보기
-		try {
-			String sql = "SELECT * FROM feed ORDER BY ts DESC";
-			
-			Connection conn = ConnectionPool.get();
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
-			
-			ArrayList<FeedDTO> feeds = new ArrayList<FeedDTO>();
-			
-			while (rs.next()) {
-				feeds.add(new FeedDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
-			}
-			
-			rs.close();
-			pstmt.close();
-			conn.close();
-			
-			return feeds;
-		} catch (NamingException | SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public static ArrayList<FeedDTO> getList(String id) { //회원 자신의 메모만 보기
+	public static String getMyList(String sid) { //AJAX로 내 피드 리스트 출력 메서드
 		try {
 			String sql = "SELECT * FROM feed WHERE id = ? ORDER BY ts DESC";
 			
 			Connection conn = ConnectionPool.get();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, sid);
 			ResultSet rs = pstmt.executeQuery();
 			
-			ArrayList<FeedDTO> feeds = new ArrayList<FeedDTO>();
+			JSONArray feeds = new JSONArray();
 			
 			while (rs.next()) {
-				feeds.add(new FeedDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+				JSONObject obj = new JSONObject();
+				
+				String ts = rs.getString(4).split(" ")[0].substring(2);
+				
+				obj.put("no", rs.getString(1));
+				obj.put("id", rs.getString(2));
+				obj.put("content", rs.getString(3));
+				obj.put("ts", ts);
+				
+				feeds.add(obj);
 			}
 			
 			rs.close();
 			pstmt.close();
 			conn.close();
 			
-			return feeds;
+			return feeds.toJSONString();
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();
+			
+			return null;
 		}
-		return null;
 	}
-	
+
 	public static int delete(String no) {
-		int result = 0;
 		try {
 			String sql = "DELETE FROM feed WHERE no = ?";
 			
@@ -122,7 +109,7 @@ public class FeedDAO {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, no);
 			
-			result = pstmt.executeUpdate();
+			int result = pstmt.executeUpdate();
 			
 			pstmt.close();
 			conn.close();
@@ -130,7 +117,8 @@ public class FeedDAO {
 			return result;
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();
+			
+			return 0;
 		}
-		return result;
 	}
 }

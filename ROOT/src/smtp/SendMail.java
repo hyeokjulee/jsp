@@ -21,7 +21,5 @@ public class SendMail {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return;
 	}
 }

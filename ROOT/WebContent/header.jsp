@@ -17,10 +17,10 @@
 	if(sid != null){
 %>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">메모메뉴</a>
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">피드메뉴</a>
           <ul class="dropdown-menu">
-			<li><a class="dropdown-item" href="/feedadd.jsp">메모작성</a></li>
-            <li><a class="dropdown-item" href="/main.jsp">메모보기</a></li>
+            <li><a class="dropdown-item" href="/main.jsp">전체 피드보기</a></li>
+            <li><a class="dropdown-item" href="/myFeed.jsp">내 피드보기</a></li>
           </ul>
         </li>
 <%
@@ -32,13 +32,14 @@
 <%
 	if(sid == null){
 %>
-            <li><a class="dropdown-item" href="/login.jsp">로그인</a></li>
-            <li><a class="dropdown-item" href="/signup.jsp">회원가입</a></li>
+            <li><a class="dropdown-item" href="/user/login.jsp">로그인</a></li>
+            <li><a class="dropdown-item" href="/user/signup.jsp">회원가입</a></li>
 <%
 	} else {
 %>
-            <li><a class="dropdown-item" href="/logout.jsp">로그아웃</a></li>
-            <li><a class="dropdown-item" href="/signout.jsp">회원탈퇴</a></li>
+            <li><a class="dropdown-item" href="/user/logout.jsp">로그아웃</a></li>
+            <li><a class="dropdown-item" href="/user/signedit.jsp">정보변경</a></li>
+            <li><a class="dropdown-item" href="/user/signout.jsp">회원탈퇴</a></li>
 <%
 	}
 %>
@@ -50,8 +51,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">관리메뉴</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/ajax/userallAJAX.jsp">회원관리</a></li>
-            <li><a class="dropdown-item" href="/ajax/feedallAJAX.jsp">게시물관리</a></li>
+            <li><a class="dropdown-item" href="/admin/temp.jsp">신청목록</a></li>
           </ul>
         </li>
 <%

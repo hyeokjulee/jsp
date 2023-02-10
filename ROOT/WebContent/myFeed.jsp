@@ -36,21 +36,13 @@
 				<button type="button" class="btn btn-primary" onclick="addItem()">추가</button>
 			</div>
  -->			
-
-<%
-	if(sid != null) {
-%>
- 
 			<div class="container">
 				<input id="id" type="hidden" value="<%=sid%>">
 				<textarea class="form-control" id="content" rows="3"></textarea>
 				<button type="button" class="btn btn-warning col-12" onclick="addItem()">추가</button>
 			</div>
-			<div style="height: 100px;"></div>
 			
-<%
-	}
-%>
+			<div style="height: 100px;"></div>
 
 			<table class="table table-hover">
 			  <thead>
@@ -108,7 +100,7 @@
 		function searchFunction() {
 			$.ajax({
 				type : 'post',
-				url : 'feed/feedAll.jsp',
+				url : 'feed/feedMy.jsp',
 				success : function (data) {
 					var feeds = JSON.parse(data.trim());
 					
