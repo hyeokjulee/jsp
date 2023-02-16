@@ -1,7 +1,6 @@
 package jdbc;
 
 import java.sql.*;
-import java.util.ArrayList;
 import javax.naming.NamingException;
 import org.json.simple.*;
 import util.ConnectionPool;
